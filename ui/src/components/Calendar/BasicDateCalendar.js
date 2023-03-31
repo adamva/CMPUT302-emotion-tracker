@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -26,7 +25,7 @@ function fakeFetch(date, { signal }) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = date.daysInMonth();
-      const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth));
+      const daysToHighlight = [1, 2, 3, 4, 5, 6, 7].map(() => getRandomNumber(1, daysInMonth));
 
       resolve({ daysToHighlight });
     }, 500);
@@ -46,13 +45,28 @@ function ServerDay(props) {
   const isSelected =
     !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
 
+  const emotions = {
+    1: { icon: '😡', color: '#FF6961' },
+    2: { icon: '🤯', color: '#30DB5B' },
+    3: { icon: '😑', color: '#7D7AFF' },
+    4: { icon: '😨', color: '#FFD426' },
+    5: { icon: '😪', color: '#409CFF' },
+    6: { icon: '😣', color: '#DA8FFF' },
+  }
+  const emotionSelection = getRandomNumber(1, Object.keys(emotions).length);
+
   return (
     <Badge
       key={props.day.toString()}
       overlap="circular"
-      badgeContent={isSelected ? '🌚' : undefined}
+      badgeContent={isSelected ? emotions[emotionSelection].icon : undefined}
     >
-      <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
+      <PickersDay 
+        {...other} 
+        outsideCurrentMonth={outsideCurrentMonth} 
+        day={day} 
+        sx={isSelected ? { backgroundColor: emotions[emotionSelection].color}: undefined}
+      />
     </Badge>
   );
 }
