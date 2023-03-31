@@ -5,9 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import TimelineIcon from '@mui/icons-material/Timeline';
 
 export default function SimpleBottomNavigation() {
   const [value, setValue] = useState(0);
@@ -28,9 +28,9 @@ export default function SimpleBottomNavigation() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/calendar" label="Calendar" icon={<RestoreIcon />} />
-          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<FavoriteIcon />} />
-          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/graph" label="Graph" icon={<LocationOnIcon />} />
+          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/calendar" label="Calendar" icon={<CalendarMonthIcon />} />
+          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<ChatBubbleIcon />} />
+          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/graph" label="Graph" icon={<TimelineIcon />} />
         </BottomNavigation>
       </Paper>
     </Box>
