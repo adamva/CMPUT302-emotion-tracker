@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+/*
+This code is modified from an example of using cards in MUI's card component, retrieved on 2023-03-31 from mui.com
+Example code here
+https://mui.com/material-ui/react-card/#media
+*/
 
 export default function TipsCard() {
   return (
@@ -38,6 +39,10 @@ export default function TipsCard() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
     </Card>
   );
 }
