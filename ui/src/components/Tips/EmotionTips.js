@@ -6,6 +6,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import { emotions } from '../consts';
+import TipsCard from './TipsCard';
+
+/*
+This code is modified from an example of using tabs in MUI's tab component, retrieved on 2023-03-31 from mui.com
+Example code here
+https://mui.com/material-ui/react-tabs/#basic-tabs
+*/
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,7 +70,7 @@ export default function EmotionTips() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={value}>
-        Item {activeEmotion.label}
+        <TipsCard></TipsCard>
       </TabPanel>
     </Box>
   );
