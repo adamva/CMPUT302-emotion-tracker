@@ -27,9 +27,9 @@ export default function TipsCard() {
       />
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="doctor-r">
+                R
+            </Avatar>
         }
         title="Angry? Heres help."
         subheader="September 14, 2016"
