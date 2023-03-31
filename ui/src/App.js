@@ -7,6 +7,7 @@ import Graph from './routes/Graph';
 import Tips from './routes/Tips';
 
 function App() {
+  console.debug('rev: $xwuWoj2$x');
   return (
     <>
       <Routes>
