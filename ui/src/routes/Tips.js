@@ -1,8 +1,9 @@
 import React from 'react'
+import EmotionTips from '../components/Tips/EmotionTips'
 
 const Tips = () => {
   return (
-    <div>Tips</div>
+    <EmotionTips></EmotionTips>
   )
 }
 
