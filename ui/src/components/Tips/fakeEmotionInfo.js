@@ -24,7 +24,7 @@ export const fakeEmotionInfo = {
         },
     tired: 
         { 
-            imageSrc: '',
+            imageSrc: 'https://images.unsplash.com/photo-1551818567-d49550a81408?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80', // Tran T. 2019. School sucks. Retrieved from https://unsplash.com/photos/F8sCVSW4t4E
             imageAlt: '',
             content: 'Purus gravida quis blandit turpis cursus in hac. Mauris vitae ultricies leo integer malesuada nunc vel risus. Ligula ullamcorper malesuada proin libero nunc.' 
         },
