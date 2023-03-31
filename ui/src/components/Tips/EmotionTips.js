@@ -70,7 +70,7 @@ export default function EmotionTips() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={value}>
-        <TipsCard></TipsCard>
+        <TipsCard emotion={activeEmotion}></TipsCard>
       </TabPanel>
     </Box>
   );
