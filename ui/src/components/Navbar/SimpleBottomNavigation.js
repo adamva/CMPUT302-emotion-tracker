@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link as ReactRouterDomLink } from 'react-router-dom';
+import { Link as ReactRouterDomLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
@@ -16,13 +16,27 @@ https://mui.com/material-ui/react-bottom-navigation/
 */
 
 export default function SimpleBottomNavigation() {
-  const [value, setValue] = useState(0);
+  const location = useLocation();
+  const [value, setValue] = useState(1);
   const ref = useRef(null);
 
   useEffect(() => {
     ref.current.ownerDocument.body.scrollTop = 0;
   }, [value]);
 
+  useEffect(() => {
+    console.debug('got new location ' + location.pathname)
+    let newValue = 0;
+    if (location.pathname === '/calendar') {
+      newValue = 0;
+    } else if (location.pathname === '/') {
+      newValue = 1;
+    } else if (location.pathname === '/graph') {
+      newValue = 2;
+    }
+    setValue(newValue);
+  }, [location.pathname])
+  
   return (
     <Box sx={{ pb: 7, width: '100%' }} ref={ref}>
       <CssBaseline />
