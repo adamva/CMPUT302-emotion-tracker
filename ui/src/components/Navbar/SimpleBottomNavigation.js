@@ -9,6 +9,12 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TimelineIcon from '@mui/icons-material/Timeline';
 
+/*
+This code is modified from an example of using MUI's bottomnavigation component, retrieved on 2023-03-31 from mui.com
+Example code here
+https://mui.com/material-ui/react-bottom-navigation/
+*/
+
 export default function SimpleBottomNavigation() {
   const [value, setValue] = useState(0);
   const ref = useRef(null);
