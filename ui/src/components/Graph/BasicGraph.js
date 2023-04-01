@@ -33,8 +33,8 @@ const BasicGraph = () => {
         <Area 
           type='monotone' 
           dataKey={emotions[emotion].value}
-          dot={null} 
-          fill={emotions[emotion].color}
+          dot={null}
+          fill='url(#colorGradient)'
           stroke={emotions[emotion].color} 
           strokeWidth={2} strokeDasharray="5 5"
         />
@@ -62,6 +62,12 @@ const BasicGraph = () => {
             data={fakeGraphData} 
             margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
           >
+            <defs>
+              <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={emotions[activeEmotion].color} stopOpacity={0.8}/>
+                <stop offset="95%" stopColor={emotions[activeEmotion].color} stopOpacity={0}/>
+              </linearGradient>
+            </defs>
             {activeEmotionList.map((emotion) => (renderEmotionGraphData(emotion)))}
             <CartesianGrid stroke='#000' strokeDasharray="1 20"/>
             <XAxis dataKey='name'/>
