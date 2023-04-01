@@ -1,9 +1,9 @@
 import React from 'react'
-import BasicGraph from '../components/Graph/BasicGraph'
+import GraphPage from '../components/Graph/GraphPage'
 
 const Graph = () => {
   return (
-    <BasicGraph />
+    <GraphPage />
   )
 }
 

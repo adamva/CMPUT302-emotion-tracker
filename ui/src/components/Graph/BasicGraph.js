@@ -58,7 +58,6 @@ const BasicGraph = () => {
   }
   return (
     <Grid container spacing={1}>
-
       <Grid item xs={12}>
         <Paper sx={{ m: 2, paddingTop: 1}}>
           <ComposedChart 
