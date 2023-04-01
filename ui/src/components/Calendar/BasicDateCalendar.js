@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -6,6 +7,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
+
+import { emotions } from '../consts';
 
 /*
 This code is modified from an example of using dynamic data in MUI's date-calendar component, retrieved on 2023-03-31 from mui.com
@@ -45,33 +48,27 @@ function ServerDay(props) {
   const isSelected =
     !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
 
-  const emotions = {
-    1: { icon: '😡', color: '#FF6961' },
-    2: { icon: '🤯', color: '#30DB5B' },
-    3: { icon: '😑', color: '#7D7AFF' },
-    4: { icon: '😨', color: '#FFD426' },
-    5: { icon: '😪', color: '#409CFF' },
-    6: { icon: '😣', color: '#DA8FFF' },
-  }
-  const emotionSelection = getRandomNumber(1, Object.keys(emotions).length);
+  const emotionSelection = getRandomNumber(0, Object.keys(emotions).length - 1);
+  const emotionSelectionValue = Object.keys(emotions)[emotionSelection];
 
   return (
     <Badge
       key={props.day.toString()}
       overlap="circular"
-      badgeContent={isSelected ? emotions[emotionSelection].icon : undefined}
+      badgeContent={isSelected ? emotions[emotionSelectionValue].icon : undefined}
     >
       <PickersDay 
         {...other} 
         outsideCurrentMonth={outsideCurrentMonth} 
         day={day} 
-        sx={isSelected ? { backgroundColor: emotions[emotionSelection].color}: undefined}
+        sx={isSelected ? { backgroundColor: emotions[emotionSelectionValue].color}: undefined}
       />
     </Badge>
   );
 }
 
 export default function BasicDateCalendar() {
+  const navigate = useNavigate();
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
@@ -101,6 +98,10 @@ export default function BasicDateCalendar() {
     return () => requestAbortController.current?.abort();
   }, []);
 
+  const handleChange = (date) => {
+    console.log(date.toISOString());
+    navigate('/graph', {state: { date: date.toISOString() }});
+  }
   const handleMonthChange = (date) => {
     if (requestAbortController.current) {
       // make sure that you are aborting useless requests
@@ -118,6 +119,7 @@ export default function BasicDateCalendar() {
       <DateCalendar
         defaultValue={initialValue}
         loading={isLoading}
+        onChange={handleChange}
         onMonthChange={handleMonthChange}
         renderLoading={() => <DayCalendarSkeleton />}
         slots={{

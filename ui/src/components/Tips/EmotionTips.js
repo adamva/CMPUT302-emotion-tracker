@@ -9,7 +9,7 @@ import { emotions } from '../consts';
 import { fakeEmotionInfo } from './fakeEmotionInfo';
 import TipsCard from './TipsCard';
 import { getRandomNumber, getRandomNumberArray } from '../../utils/Utils';
-import { AppBar, Paper } from '@mui/material';
+import { AppBar } from '@mui/material';
 
 /*
 This code is modified from an example of using tabs in MUI's tab component, retrieved on 2023-03-31 from mui.com
