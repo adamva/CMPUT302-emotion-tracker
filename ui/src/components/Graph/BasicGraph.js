@@ -5,6 +5,7 @@ import { Button, Card, CardContent, FormControl, FormHelperText, MenuItem, Selec
 
 import { emotions } from '../consts';
 import { fakeGraphData } from './fakeGraphData';
+import MultipleSelectChip from './EmotionListSelect';
 
 const BasicGraph = () => {
   const graphWidth = window.innerWidth - 20;
@@ -12,16 +13,16 @@ const BasicGraph = () => {
   console.debug(`graphWidth: ${graphWidth} graphHeigh: ${graphHeight}`);
 
   const [ activeEmotion, setActiveEmotion ] = useState('tired');
-  const [ emotionList, setEmotionList ] = useState(['tired', 'anger'])
+  const [ activeEmotionList, setActiveEmotionList ] = useState(['tired', 'anger'])
 
   const handelActiveEmotionChange = (e) => {
     let newActiveEmotion = e.target.value;
-    let newEmotionList = [...emotionList];
-    newEmotionList.splice(emotionList.findIndex((element) => element === newActiveEmotion), 1)
+    let newEmotionList = [...activeEmotionList];
+    newEmotionList.splice(activeEmotionList.findIndex((element) => element === newActiveEmotion), 1)
     newEmotionList.push(newActiveEmotion);
     
     setActiveEmotion(newActiveEmotion);
-    setEmotionList(newEmotionList);
+    setActiveEmotionList(newEmotionList);
   }
 
   const renderEmotionGraphData = (emotion) => {
@@ -59,7 +60,7 @@ const BasicGraph = () => {
             data={fakeGraphData} 
             margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
           >
-            {emotionList.map((emotion) => (renderEmotionGraphData(emotion)))}
+            {activeEmotionList.map((emotion) => (renderEmotionGraphData(emotion)))}
             <CartesianGrid stroke='#000' strokeDasharray="1 20"/>
             <XAxis dataKey='name'/>
             <YAxis />
@@ -68,9 +69,9 @@ const BasicGraph = () => {
       </Grid>
       <Grid item xs={12}>
         <Paper sx={{ marginLeft: 2, marginRight: 2 }}>
-          <Typography variant='h5' gutterBottom color='primary'>Graph Controls</Typography>
+          <Typography variant='h5' color='primary' sx={{ m: 1 }}>Graph Controls</Typography>
           <FormControl sx={{ m: 1 }}>
-            <InputLabel id="active-emotion-select-helper-label">Emotion</InputLabel>
+            <InputLabel id="active-emotion-select-helper-label">Active Emotion</InputLabel>
             <Select
               labelId="active-emotion-select-helper-label"
               id="active-emotion-select-helper"
@@ -78,12 +79,13 @@ const BasicGraph = () => {
               label="Active Emotion"
               onChange={handelActiveEmotionChange}
             >
-              {emotionList.map((emotion) => (
+              {activeEmotionList.map((emotion) => (
                 <MenuItem value={emotions[emotion].value}>{emotions[emotion].label}</MenuItem>
               ))}
             </Select>
             <FormHelperText>Select the emotion to highlight</FormHelperText>
           </FormControl>
+          <MultipleSelectChip activeEmotionList={activeEmotionList} setActiveEmotionList={setActiveEmotionList} />
         </Paper>
       </Grid>
     </Grid>
