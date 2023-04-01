@@ -9,6 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
+import ShareMenu from './ShareMenu';
 import { getRandomNumber } from '../../utils/Utils';
 
 /*
@@ -47,7 +48,7 @@ export default function TipsCard({ emotion, content }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
+        <ShareMenu />
         <Button component={ReactRouterDomLink} to={learnMoreURL} size="small">Learn More</Button>
       </CardActions>
     </Card>
