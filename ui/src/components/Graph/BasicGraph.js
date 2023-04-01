@@ -1,28 +1,45 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { Typography } from '@mui/material';
 
 import { emotions } from '../consts';
 import { fakeGraphData } from './fakeGraphData';
 
 const BasicGraph = () => {
-  const graphWidth = window.innerWidth - 20;
-  const graphHeight = window.innerHeight / 2;
-  console.log(graphWidth)
-  console.log(graphHeight)
+  const graphWidth = window.innerWidth;
+  const graphHeight = window.innerHeight / 1.5;
+  console.debug(`graphWidth: ${graphWidth} graphHeigh: ${graphHeight}`);
+
+  const activeEmotions = [ 'anger', 'tired' ];
   return (
     <Box>
       <Typography variant='h5'>Graph</Typography>
-      <LineChart width={graphWidth} height={graphHeight} data={fakeGraphData}>
-        <Line type='monotone' dataKey={emotions.anger.value} stroke={emotions.anger.color} strokeWidth={2}/>
-        <Line type='monotone' dataKey={emotions.overwhelmed.value} stroke={emotions.overwhelmed.color} strokeWidth={2}/>
-        <Line type='monotone' dataKey={emotions.tired.value} stroke={emotions.tired.color} strokeWidth={2}/>
-        <CartesianGrid stroke='#ccc'/>
+      <AreaChart 
+        width={graphWidth} 
+        height={graphHeight} 
+        data={fakeGraphData} 
+        margin={{
+            top: 5,
+            right: 30,
+            left: 0,
+            bottom: 5,
+          }}
+      >
+        {activeEmotions.map((emotion, idx) => (
+          <Area 
+            type='monotone' 
+            dataKey={emotions[emotion].value}
+            dot={null} 
+            fill={emotions[emotion].color} 
+            stroke={emotions[emotion].color} 
+            strokeWidth={2} strokeDasharray="5 5"
+          />
+        ))}
+        <CartesianGrid stroke='#000' strokeDasharray="1 20"/>
         <XAxis dataKey='name' />
         <YAxis />
-        <Legend />
-      </LineChart>
+      </AreaChart>
     </Box>
   )
 }
