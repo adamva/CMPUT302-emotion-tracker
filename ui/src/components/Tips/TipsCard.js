@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link as ReactRouterDomLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -19,6 +20,7 @@ https://mui.com/material-ui/react-card/#media
 export default function TipsCard({ emotion, content }) {
     console.debug('Rendering emotion TipsCard content:');
     console.debug(content);
+    const learnMoreURL = `https://www.google.com/search?q=${emotion.label}`;
   return (
     <Card sx={{ maxWidth: 345 }}>
         {content.imageSrc !== '' && 
@@ -46,7 +48,7 @@ export default function TipsCard({ emotion, content }) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button component={ReactRouterDomLink} to={learnMoreURL} size="small">Learn More</Button>
       </CardActions>
     </Card>
   );
