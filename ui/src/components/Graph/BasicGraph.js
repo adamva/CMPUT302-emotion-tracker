@@ -60,7 +60,7 @@ const BasicGraph = () => {
             width={graphWidth} 
             height={graphHeight} 
             data={fakeGraphData} 
-            margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
+            margin={{ top: 0, right: 50, left: 10, bottom: 0 }}
           >
             <defs>
               <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
@@ -69,9 +69,9 @@ const BasicGraph = () => {
               </linearGradient>
             </defs>
             {activeEmotionList.map((emotion) => (renderEmotionGraphData(emotion)))}
-            <CartesianGrid stroke='#000' strokeDasharray="1 20"/>
+            <CartesianGrid horizontal={false} stroke='#000' strokeDasharray="1 20"/>
             <XAxis dataKey='name'/>
-            <YAxis />
+            <YAxis label={{ value: 'Emotion Level', angle: -90, position: 'insideLeft' }} />
           </ComposedChart>
         </Paper>
       </Grid>
