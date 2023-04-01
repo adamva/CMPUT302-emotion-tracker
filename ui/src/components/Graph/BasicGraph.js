@@ -17,9 +17,11 @@ const BasicGraph = () => {
 
   const handelActiveEmotionChange = (e) => {
     let newActiveEmotion = e.target.value;
+    // Rearrange the graph to have the active emotion at the beginning of the list such that
+    // the graph will render the non-active emotions ontop
     let newEmotionList = [...activeEmotionList];
     newEmotionList.splice(activeEmotionList.findIndex((element) => element === newActiveEmotion), 1)
-    newEmotionList.push(newActiveEmotion);
+    newEmotionList.unshift(newActiveEmotion);
     
     setActiveEmotion(newActiveEmotion);
     setActiveEmotionList(newEmotionList);
