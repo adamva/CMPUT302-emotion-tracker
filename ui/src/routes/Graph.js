@@ -1,8 +1,9 @@
 import React from 'react'
+import BasicGraph from '../components/Graph/BasicGraph'
 
 const Graph = () => {
   return (
-    <div>Graph</div>
+    <BasicGraph />
   )
 }
 
