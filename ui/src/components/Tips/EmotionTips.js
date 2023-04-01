@@ -9,7 +9,7 @@ import { emotions } from '../consts';
 import { fakeEmotionInfo } from './fakeEmotionInfo';
 import TipsCard from './TipsCard';
 import { getRandomNumber, getRandomNumberArray } from '../../utils/Utils';
-import { Paper } from '@mui/material';
+import { AppBar, Paper } from '@mui/material';
 
 /*
 This code is modified from an example of using tabs in MUI's tab component, retrieved on 2023-03-31 from mui.com
@@ -29,7 +29,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3, marginTop: 5 }}>
+        <Box sx={{ p: 3, }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -72,27 +72,22 @@ export default function EmotionTips() {
 
   return (
     <Box sx={{ bgcolor: 'background.paper' }}>
-      <Paper 
-        sx={{
-          borderBottom: 1, borderColor: 'divider', bgcolor: 'white', 
-          position: 'fixed', top: 0, left: 0, right: 0, 
-          zIndex: 1 
-        }}
-        elevation={3}
-      >
+      <AppBar position='static'>
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons
           allowScrollButtonsMobile
+          textColor='inherit'
+          indicatorColor='inherit'
         >
           {Object.keys(emotions).map((emotion) => (
             <Tab key={emotions[emotion].id} label={emotions[emotion].label}>
             </Tab>
           ))}
         </Tabs>
-      </Paper>
+      </AppBar>
       <TabPanel value={value} index={value}>
         {renderTipsCards()}
       </TabPanel>
