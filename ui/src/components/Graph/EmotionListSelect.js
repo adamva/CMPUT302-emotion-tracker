@@ -59,7 +59,7 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Emotions</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">Emotions To Show</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
@@ -70,7 +70,7 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} sx={{ backgroundColor: emotions[value].color, color: 'white' }}/>
+                <Chip key={value} label={emotions[value].icon + ' ' + value} sx={{ backgroundColor: emotions[value].color, color: 'white' }}/>
               ))}
             </Box>
           )}
