@@ -13,7 +13,7 @@ const BasicGraph = () => {
 
   const [ activeEmotion, setActiveEmotion ] = useState('tired');
   const [ activeEmotionList, setActiveEmotionList ] = useState(['tired', 'anger'])
-  const [ activeLocation, setActiveLocation ] = useState('library');
+  const [ activeLocation, setActiveLocation ] = useState('');
 
   const handleActiveLocationChange = (e) => {
     let newActiveLocation = e.target.value;
