@@ -23,5 +23,10 @@ export const fakeGraphDataLocation = {
         label: 'School',
         x1: '08:00',
         x2: '15:00'
+    },
+    gym: {
+        label: 'Gym',
+        x1: '15:00',
+        x2: '17:00'
     }
 }
