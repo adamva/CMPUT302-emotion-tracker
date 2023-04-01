@@ -13,11 +13,11 @@ export default function GraphPage() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Button variant='contained' sx={{ backgroundColor: 'whitesmoke', color: 'blue'}} startIcon={<NavigateBeforeIcon />}>Mar 1</Button>
+          <Button variant='outlined' color='inherit' startIcon={<NavigateBeforeIcon />}>Mar 1</Button>
           <Typography variant="h6" component="div">
             March 2
           </Typography>
-          <Button variant='contained' sx={{ backgroundColor: 'whitesmoke', color: 'blue'}} endIcon={<NavigateNextIcon />}>Mar 3</Button>
+          <Button variant='outlined' color='inherit' endIcon={<NavigateNextIcon />}>Mar 3</Button>
         </Toolbar>
       </AppBar>
       <BasicGraph />
