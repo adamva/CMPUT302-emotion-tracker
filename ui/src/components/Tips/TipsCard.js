@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-import { fakeEmotionInfo } from './fakeEmotionInfo';
+import { getRandomNumber } from '../../utils/Utils';
 
 /*
 This code is modified from an example of using cards in MUI's card component, retrieved on 2023-03-31 from mui.com
@@ -16,23 +16,24 @@ Example code here
 https://mui.com/material-ui/react-card/#media
 */
 
-export default function TipsCard({ emotion }) {
-    const emotionValue = emotion.value;
+export default function TipsCard({ emotion, content }) {
+    console.debug('Rendering emotion TipsCard content:');
+    console.debug(content);
   return (
     <Card sx={{ maxWidth: 345 }}>
-        {fakeEmotionInfo[emotionValue].imageSrc !== '' && 
+        {content.imageSrc !== '' && 
             <CardMedia
                 component="img"
                 height="512"
                 sx={{ objectFit: 'contain' }}
-                image={fakeEmotionInfo[emotionValue].imageSrc}
-                alt={fakeEmotionInfo[emotionValue].imageAlt}
+                image={content.imageSrc}
+                alt={content.imageAlt}
             />
         }
       <CardHeader
         avatar={
             <Avatar sx={{ bgcolor: emotion.color }} aria-label="doctor-r">
-                {emotion.label.charAt(0)}
+                {emotion.label.charAt(getRandomNumber(0, emotion.label.length - 1))}
             </Avatar>
         }
         title={emotion.label + "? Heres help."}
@@ -40,7 +41,7 @@ export default function TipsCard({ emotion }) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary" align='justify' style={{whiteSpace: 'pre-line'}}>
-            {fakeEmotionInfo[emotionValue].content}
+            {content.content}
         </Typography>
       </CardContent>
       <CardActions>

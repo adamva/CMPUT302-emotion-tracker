@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import { emotions } from '../consts';
+import { fakeEmotionInfo } from './fakeEmotionInfo';
 import TipsCard from './TipsCard';
 
 /*
@@ -70,7 +71,7 @@ export default function EmotionTips() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={value}>
-        <TipsCard emotion={activeEmotion}></TipsCard>
+        <TipsCard emotion={activeEmotion} content={fakeEmotionInfo[activeEmotion.value][0]}></TipsCard>
       </TabPanel>
     </Box>
   );
