@@ -5,6 +5,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
@@ -58,7 +59,7 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">Emotions</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
@@ -85,6 +86,7 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
             </MenuItem>
           ))}
         </Select>
+        {activeEmotionList.length <= 0 ? <FormHelperText>Select the emotions to graph</FormHelperText> : null}
       </FormControl>
     </div>
   );
