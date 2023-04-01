@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, CartesianGrid, ComposedChart, Line, XAxis, YAxis } from 'recharts';
 import { Typography } from '@mui/material';
 
 import { emotions } from '../consts';
@@ -11,11 +11,12 @@ const BasicGraph = () => {
   const graphHeight = window.innerHeight / 1.5;
   console.debug(`graphWidth: ${graphWidth} graphHeigh: ${graphHeight}`);
 
-  const activeEmotions = [ 'anger', 'tired' ];
+  const [ activeEmotion, setActiveEmotion ] = useState('anger');
+  const [ emotionList, setEmotionList ] = useState(['anger', 'tired'])
   return (
-    <Box>
+    <Box sx={{ bgcolor: 'background.paper' }}>
       <Typography variant='h5'>Graph</Typography>
-      <AreaChart 
+      <ComposedChart 
         width={graphWidth} 
         height={graphHeight} 
         data={fakeGraphData} 
@@ -26,7 +27,8 @@ const BasicGraph = () => {
             bottom: 5,
           }}
       >
-        {activeEmotions.map((emotion, idx) => (
+        {emotionList.map((emotion) => (
+          emotion === activeEmotion ? 
           <Area 
             type='monotone' 
             dataKey={emotions[emotion].value}
@@ -35,11 +37,20 @@ const BasicGraph = () => {
             stroke={emotions[emotion].color} 
             strokeWidth={2} strokeDasharray="5 5"
           />
+          :
+          <Line 
+            type='monotone' 
+            dataKey={emotions[emotion].value}
+            dot={null} 
+            stroke={emotions[emotion].color} 
+            strokeWidth={2} strokeDasharray="5 5"
+          />
+          
         ))}
         <CartesianGrid stroke='#000' strokeDasharray="1 20"/>
         <XAxis dataKey='name' />
         <YAxis />
-      </AreaChart>
+      </ComposedChart>
     </Box>
   )
 }
