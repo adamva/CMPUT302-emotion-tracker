@@ -32,10 +32,11 @@ const BasicGraph = () => {
     setActiveEmotionList(newEmotionList);
   }
 
-  const renderEmotionGraphData = (emotion) => {
+  const renderEmotionGraphData = (emotion, idx) => {
     if (emotion === activeEmotion) {
       return (
         <Area 
+          key={idx}
           type='monotone' 
           dataKey={emotions[emotion].value}
           dot={null}
@@ -47,6 +48,7 @@ const BasicGraph = () => {
     } else {
       return (
         <Line 
+          key={idx}
           type='monotone' 
           dataKey={emotions[emotion].value}
           dot={null} 
@@ -72,7 +74,7 @@ const BasicGraph = () => {
                 <stop offset="95%" stopColor={emotions[activeEmotion].color} stopOpacity={0}/>
               </linearGradient>
             </defs>
-            {activeEmotionList.map((emotion) => (renderEmotionGraphData(emotion)))}
+            {activeEmotionList.map((emotion, idx) => (renderEmotionGraphData(emotion, idx)))}
             <CartesianGrid horizontal={false} stroke='#000' strokeDasharray="1 20"/>
             <XAxis dataKey='name'/>
             <YAxis label={{ value: 'Emotion Level', angle: -90, position: 'insideLeft' }} />
@@ -95,7 +97,7 @@ const BasicGraph = () => {
               onChange={handleActiveEmotionChange}
             >
               {activeEmotionList.map((emotion) => (
-                <MenuItem value={emotions[emotion].value}>{emotions[emotion].label}</MenuItem>
+                <MenuItem key={emotions[emotion].id} value={emotions[emotion].value}>{emotions[emotion].label}</MenuItem>
               ))}
             </Select>
             <FormHelperText>Select the emotion to highlight</FormHelperText>
@@ -111,8 +113,8 @@ const BasicGraph = () => {
               onChange={handleActiveLocationChange}
             >
               <MenuItem value=""><em>None</em></MenuItem>
-              {Object.keys(fakeGraphDataLocation).map((location) => (
-                <MenuItem value={location}>{fakeGraphDataLocation[location].label}</MenuItem>
+              {Object.keys(fakeGraphDataLocation).map((location, idx) => (
+                <MenuItem key={idx} value={location}>{fakeGraphDataLocation[location].label}</MenuItem>
               ))}
             </Select>
             <FormHelperText>Select the location to highlight</FormHelperText>
