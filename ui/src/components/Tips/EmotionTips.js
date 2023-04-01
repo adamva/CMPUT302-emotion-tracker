@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { emotions } from '../consts';
 import { fakeEmotionInfo } from './fakeEmotionInfo';
 import TipsCard from './TipsCard';
+import { getRandomNumber } from '../../utils/Utils';
 
 /*
 This code is modified from an example of using tabs in MUI's tab component, retrieved on 2023-03-31 from mui.com
@@ -54,6 +55,21 @@ export default function EmotionTips() {
     setValue(newValue);
   };
 
+  const renderTipsCards = () => {
+    // xxx <TipsCard emotion={activeEmotion} content={fakeEmotionInfo[activeEmotion.value][1]}></TipsCard>
+    let tipsCardsRender = [];
+    let fakeEmotionInfoList = fakeEmotionInfo[activeEmotion.value];
+    let numTipsToRender = getRandomNumber(1, fakeEmotionInfoList.length);
+    for (let idx = 0; idx < numTipsToRender; idx++) {
+      const tipIndex = getRandomNumber(0, numTipsToRender - 1);
+      tipsCardsRender.push(
+        <TipsCard key={idx * 2} emotion={activeEmotion} content={fakeEmotionInfo[activeEmotion.value][tipIndex]}></TipsCard>
+      );
+      tipsCardsRender.push(<br key={idx * 2 + 1} />)
+    }
+    return(<>{tipsCardsRender}</>);
+  };
+
   return (
     <Box sx={{ bgcolor: 'background.paper' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -71,7 +87,7 @@ export default function EmotionTips() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={value}>
-        <TipsCard emotion={activeEmotion} content={fakeEmotionInfo[activeEmotion.value][0]}></TipsCard>
+        {renderTipsCards()}
       </TabPanel>
     </Box>
   );
