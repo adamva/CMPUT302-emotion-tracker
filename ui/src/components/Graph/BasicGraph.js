@@ -7,7 +7,7 @@ import { emotions } from '../consts';
 import { fakeGraphData } from './fakeGraphData';
 
 const BasicGraph = () => {
-  const graphWidth = window.innerWidth;
+  const graphWidth = window.innerWidth - 20;
   const graphHeight = window.innerHeight / 2;
   console.debug(`graphWidth: ${graphWidth} graphHeigh: ${graphHeight}`);
 
@@ -49,20 +49,15 @@ const BasicGraph = () => {
     }
   }
   return (
-    <Grid container spacing={2} sx={{ backgroundColor: 'whitesmoke' }}>
+    <Grid container spacing={1}>
 
       <Grid item xs={12}>
-        <Paper>
-          <Typography variant='h5'>Graph</Typography>
+        <Paper sx={{ m: 2, paddingTop: 1}}>
           <ComposedChart 
             width={graphWidth} 
             height={graphHeight} 
             data={fakeGraphData} 
-            margin={
-              {
-                right: 50
-              }
-            }
+            margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
           >
             {emotionList.map((emotion) => (renderEmotionGraphData(emotion)))}
             <CartesianGrid stroke='#000' strokeDasharray="1 20"/>
@@ -72,7 +67,8 @@ const BasicGraph = () => {
         </Paper>
       </Grid>
       <Grid item xs={12}>
-        <Paper>
+        <Paper sx={{ marginLeft: 2, marginRight: 2 }}>
+          <Typography variant='h5' gutterBottom color='primary'>Graph Controls</Typography>
           <FormControl sx={{ m: 1 }}>
             <InputLabel id="active-emotion-select-helper-label">Emotion</InputLabel>
             <Select
