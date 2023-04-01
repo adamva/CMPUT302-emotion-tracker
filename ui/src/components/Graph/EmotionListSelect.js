@@ -28,10 +28,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-    'Jerry Bob',
-    'Milly Kyle'
-]
 const emotionList = Array.from(Object.keys(emotions), (emotion) => emotions[emotion].label);
 
 function getStyles(name, emotionList, theme) {
@@ -58,7 +54,7 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 1, width:'60%', maxWidth:'60%' }}>
         <InputLabel id="demo-multiple-chip-label">Emotions To Show</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"

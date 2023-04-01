@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import Box from '@mui/material/Box';
+import React, { useState } from 'react'
 import { Area, CartesianGrid, ComposedChart, Line, ReferenceArea, XAxis, YAxis } from 'recharts';
-import { Button, Card, CardContent, FormControl, FormHelperText, MenuItem, Select, InputLabel, Typography, Paper, Grid } from '@mui/material';
+import { FormControl, FormHelperText, MenuItem, Select, InputLabel, Typography, Paper, Grid } from '@mui/material';
 
 import { emotions } from '../consts';
 import { fakeGraphData, fakeGraphDataLocation } from './fakeGraphData';
