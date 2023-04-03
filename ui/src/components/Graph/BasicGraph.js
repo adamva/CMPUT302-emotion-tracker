@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Area, CartesianGrid, ComposedChart, Line, ReferenceArea, XAxis, YAxis } from 'recharts';
 import { FormControl, FormHelperText, MenuItem, Select, InputLabel, Typography, Paper, Grid } from '@mui/material';
 
@@ -6,7 +6,7 @@ import { emotions } from '../consts';
 import { fakeGraphData, fakeGraphDataLocation } from './fakeGraphData';
 import MultipleSelectChip from './EmotionListSelect';
 
-const BasicGraph = () => {
+const BasicGraph = ({ currentDate }) => {
   const graphWidth = window.innerWidth - 20;
   const graphHeight = window.innerHeight / 2;
   console.debug(`graphWidth: ${graphWidth} graphHeigh: ${graphHeight}`);
@@ -32,6 +32,24 @@ const BasicGraph = () => {
     setActiveEmotionList(newEmotionList);
   }
 
+  useEffect(() => {
+    // Choose two random emotions to graph based on any given day choosen
+    const currentISODate = currentDate.split('T')[0];
+    // let randomNumberArray = getRandomNumberArray(2, Object.keys(emotions).length - 1);
+    let randomNumberArray = [ 
+      currentISODate[currentISODate.length - 1 ] % Object.keys(emotions).length , 
+      currentISODate[currentISODate.length - 2 ] % Object.keys(emotions).length
+    ]
+    let newEmotionList = [];
+    for (let i = 0; i < randomNumberArray.length; i++) {
+      let randomEmotion = Object.keys(emotions)[randomNumberArray[i]];
+      newEmotionList.push(randomEmotion);
+    }
+    let uniqNewEmotionList = [...new Set(newEmotionList)];
+    setActiveEmotionList(uniqNewEmotionList);
+    setActiveEmotion(uniqNewEmotionList[0]);
+  }, [currentDate]);
+  
   const renderEmotionGraphData = (emotion, idx) => {
     if (emotion === activeEmotion) {
       return (

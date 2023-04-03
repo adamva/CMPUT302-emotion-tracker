@@ -59,7 +59,7 @@ export default function GraphPage() {
           </Button>
         </Toolbar>
       </AppBar>
-      <BasicGraph />
+      <BasicGraph currentDate={currentDate.toISOString()}/>
     </Box>
   );
 }
