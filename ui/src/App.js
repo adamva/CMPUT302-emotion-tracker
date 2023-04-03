@@ -5,17 +5,23 @@ import SimpleBottomNavigation from './components/Navbar/SimpleBottomNavigation';
 import Calendar from './routes/Calendar';
 import Graph from './routes/Graph';
 import Tips from './routes/Tips';
+import Customize from './routes/Customize';
+
+import { EmotionThemeProvider } from './context/EmotionThemeContext';
 
 function App() {
-  console.debug('rev: $xwuWoj2$x');
+  console.debug('rev: $xwne82$x');
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Tips />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/graph" element={<Graph />} />
-      </Routes>
-      <SimpleBottomNavigation />
+      <EmotionThemeProvider>
+        <Routes>
+          <Route path="/" element={<Tips />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/graph" element={<Graph />} />
+          <Route path="/customize" element={<Customize />} />
+        </Routes>
+        <SimpleBottomNavigation />
+      </EmotionThemeProvider>
     </>
   );
 }
