@@ -58,7 +58,7 @@ export default function TipsCard({ emotion, content }) {
       <CardHeader
         avatar={
             <Avatar sx={{ bgcolor: emotion.color }} aria-label="doctor-r">
-                {emotion.label.charAt(getRandomNumber(0, emotion.label.length - 1))}
+                {emotion.label.charAt(0)}
             </Avatar>
         }
         title={emotion.label + "? Heres help."}
