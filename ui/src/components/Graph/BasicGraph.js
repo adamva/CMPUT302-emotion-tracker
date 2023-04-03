@@ -95,7 +95,7 @@ const BasicGraph = ({ currentDate }) => {
             {activeEmotionList.map((emotion, idx) => (renderEmotionGraphData(emotion, idx)))}
             <CartesianGrid horizontal={false} stroke='#000' strokeDasharray="1 20"/>
             <XAxis dataKey='name'/>
-            <YAxis label={{ value: 'Emotion Level', angle: -90, position: 'insideLeft' }} />
+            <YAxis label={{ value: 'Emotion Intensity', angle: -90, position: 'insideLeft' }} />
             {activeLocation && 
               <ReferenceArea x1={fakeGraphDataLocation[activeLocation].x1} x2={fakeGraphDataLocation[activeLocation].x2}/>
             }
@@ -105,8 +105,8 @@ const BasicGraph = ({ currentDate }) => {
       <Grid item xs={12}>
         <Paper sx={{ marginLeft: 2, marginRight: 2 }}>
           <Typography variant='h5' color='primary' sx={{ m: 1 }}>Graph Controls</Typography>
-          <FormControl sx={{ m: 1, maxWidth:'60%' }}>
-            <InputLabel id="active-emotion-select-helper-label">Active Emotion</InputLabel>
+          <FormControl sx={{ m: 1, width:'60%', maxWidth:'60%' }}>
+            <InputLabel id="active-emotion-select-helper-label">Highlight Emotion</InputLabel>
             <Select
               labelId="active-emotion-select-helper-label"
               id="active-emotion-select-helper"
@@ -118,11 +118,10 @@ const BasicGraph = ({ currentDate }) => {
                 <MenuItem key={emotions[emotion].id} value={emotions[emotion].value}>{emotions[emotion].label}</MenuItem>
               ))}
             </Select>
-            <FormHelperText>Select the emotion to highlight</FormHelperText>
           </FormControl>
           <MultipleSelectChip activeEmotionList={activeEmotionList} setActiveEmotionList={setActiveEmotionList} />
           <FormControl sx={{ m: 1, maxWidth:'60%' }}>
-            <InputLabel id="active-location-select-helper-label">Active Location</InputLabel>
+            <InputLabel id="active-location-select-helper-label">Highlight Location</InputLabel>
             <Select
               labelId="active-location-select-helper-label"
               id="active-location-select-helper"
