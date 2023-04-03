@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TimelineIcon from '@mui/icons-material/Timeline';
 
@@ -49,7 +49,7 @@ export default function SimpleBottomNavigation() {
           }}
         >
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/calendar" label="Calendar" icon={<CalendarMonthIcon />} />
-          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<ChatBubbleIcon />} />
+          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<QuestionAnswerIcon />} />
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/graph" label="Graph" icon={<TimelineIcon />} />
         </BottomNavigation>
       </Paper>
