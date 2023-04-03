@@ -40,7 +40,7 @@ export default function TipsCard({ emotion, content }) {
             </Avatar>
         }
         title={emotion.label + "? Heres help."}
-        subheader="September 14, 2016"
+        subheader={content.published}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary" align='justify' style={{whiteSpace: 'pre-line'}}>
