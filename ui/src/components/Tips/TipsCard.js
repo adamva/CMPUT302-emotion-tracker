@@ -15,7 +15,6 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import ShareMenu from './ShareMenu';
-import { getRandomNumber } from '../../utils/Utils';
 
 /*
 This code is modified from an example of using cards in MUI's card component, retrieved on 2023-03-31 from mui.com
