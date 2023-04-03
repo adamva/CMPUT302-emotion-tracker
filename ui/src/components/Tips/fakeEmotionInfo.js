@@ -10,7 +10,8 @@ export const fakeEmotionInfo = {
             imageSrc: '',
             imageAlt: '',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim sodales ut eu sem integer. \n\nMassa eget egestas purus viverra accumsan. Consectetur a erat nam at lectus urna duis. Lobortis feugiat vivamus at augue eget. Nunc mi ipsum faucibus vitae. Enim ut sem viverra aliquet eget. Non consectetur a erat nam at lectus. Lorem dolor sed viverra ipsum nunc aliquet bibendum. \n\nNulla facilisi cras fermentum odio eu feugiat pretium nibh. Elementum nibh tellus molestie nunc non blandit massa. Nisi scelerisque eu ultrices vitae.',
-            published: 'December 20, 2021'
+            published: 'December 20, 2021',
+            hasComments: true
         }, 
         { 
             imageSrc: '',
@@ -36,7 +37,8 @@ export const fakeEmotionInfo = {
             imageSrc: '',
             imageAlt: '',
             content: 'Praesent tristique magna sit amet purus gravida quis blandit turpis. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar.',
-            published: 'July 9, 2015'
+            published: 'July 9, 2015',
+            hasComments: true
         }
     ],
     bored: [
@@ -44,7 +46,8 @@ export const fakeEmotionInfo = {
             imageSrc: 'https://images.unsplash.com/photo-1598257006626-48b0c252070d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80', // Magnet.me 2020. Career related stockphotos. Retrieved from https://unsplash.com/photos/LDcC7aCWVlo
             imageAlt: 'Career related stockphotos',
             content: "Fermentum et sollicitudin ac orci phasellus egestas. Ullamcorper a lacus vestibulum sed arcu non. In nibh mauris cursus mattis molestie a iaculis. Sapien nec sagittis aliquam malesuada bibendum arcu.",
-            published: 'August 21, 2012'
+            published: 'August 21, 2012',
+            hasComments: true
         },
         { 
             imageSrc: '',
@@ -70,7 +73,8 @@ export const fakeEmotionInfo = {
             imageSrc: '',
             imageAlt: '',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae turpis massa sed elementum tempus egestas sed. \n\nId aliquet risus feugiat in ante metus dictum at. Lorem ipsum dolor sit amet consectetur. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Nibh tortor id aliquet lectus proin nibh nisl condimentum id. Risus commodo viverra maecenas accumsan lacus. \nSagittis id consectetur purus ut faucibus. Dui faucibus in ornare quam viverra orci sagittis eu. Neque vitae tempus quam pellentesque nec nam. Risus quis varius quam quisque id diam vel quam. Eget lorem dolor sed viverra ipsum. Nulla pellentesque dignissim enim sit amet venenatis urna cursus. Vivamus at augue eget arcu dictum varius. Vitae elementum curabitur vitae nunc sed velit dignissim sodales. Dictum non consectetur a erat nam at lectus. Elementum nisi quis eleifend quam adipiscing vitae proin sagittis nisl. \n\nEtiam tempor orci eu lobortis elementum nibh tellus molestie. Ut faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Sit amet nisl purus in mollis nunc sed.',
-            published: 'October 24, 2018'
+            published: 'October 24, 2018',
+            hasComments: true
         },
         { 
             imageSrc: '',
@@ -84,7 +88,8 @@ export const fakeEmotionInfo = {
             imageSrc: 'https://images.unsplash.com/photo-1551818567-d49550a81408?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80', // Tran T. 2019. School sucks. Retrieved from https://unsplash.com/photos/F8sCVSW4t4E
             imageAlt: 'School sucks.',
             content: 'Purus gravida quis blandit turpis cursus in hac. Mauris vitae ultricies leo integer malesuada nunc vel risus. Ligula ullamcorper malesuada proin libero nunc.',
-            published: 'November 11, 2013'
+            published: 'November 11, 2013',
+            hasComments: true
         },
         { 
             imageSrc: '',
@@ -110,7 +115,8 @@ export const fakeEmotionInfo = {
             imageSrc: '',
             imageAlt: '',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor eu augue ut lectus arcu bibendum at varius. \n\nPurus gravida quis blandit turpis cursus in hac habitasse. Aliquet sagittis id consectetur purus ut faucibus. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.',
-            published: 'September 14, 2016'
+            published: 'September 14, 2016',
+            hasComments: true
         },
         { 
             imageSrc: '',

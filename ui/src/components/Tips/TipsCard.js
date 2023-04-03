@@ -36,7 +36,6 @@ const ExpandMore = styled((props) => {
 
 export default function TipsCard({ emotion, content }) {
     const [expanded, setExpanded] = React.useState(false);
-    const disableComments = getRandomNumber(0, 1) ? true : false;
     console.debug('Rendering emotion TipsCard content:');
     console.debug(content);
     const learnMoreURL = `https://www.google.com/search?q=${emotion.label}`;
@@ -73,7 +72,7 @@ export default function TipsCard({ emotion, content }) {
       <CardActions>
         <ShareMenu />
         <Button component={ReactRouterDomLink} to={learnMoreURL} size="small">Learn More</Button>
-        { !disableComments &&
+        { (content.hasComments && content.hasComments) &&
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -84,17 +83,11 @@ export default function TipsCard({ emotion, content }) {
           </ExpandMore>
         }
       </CardActions>
-      { !disableComments &&
+      { (content.hasComments && content.hasComments) &&
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do iusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-            <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do iusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-            <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do iusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
           </CardContent>
         </Collapse>
