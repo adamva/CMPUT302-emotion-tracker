@@ -6,11 +6,19 @@ const EmotionThemeContext = createContext();
 export default EmotionThemeContext;
 
 export const EmotionThemeProvider = ({children}) => {
-    const [ storgaeEmotions, setStorageEmotions ] = useState(
-        () => localStorage.getItem('storgaeEmotions') ? JSON.parse(localStorage.getItem('storgaeEmotions')) : emotions);
+    const [ storageEmotions, setStorageEmotions ] = useState(
+        () => localStorage.getItem('storageEmotions') ? JSON.parse(localStorage.getItem('storageEmotions')) : emotions);
     
+    const updateEmotions = (emotionData) => {
+        console.log('Setting emotionData ...')
+        console.debug(emotionData);
+        localStorage.setItem('storageEmotions', JSON.stringify(emotionData));
+        setStorageEmotions(emotionData);
+    }
+
     let contextData = {
-        storgaeEmotions: storgaeEmotions,
+        storageEmotions: storageEmotions,
+        updateEmotions: updateEmotions,
     }
 
     return (
