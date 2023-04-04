@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 import { emotions } from '../components/consts';
 
@@ -10,15 +10,22 @@ export const EmotionThemeProvider = ({children}) => {
         () => localStorage.getItem('storageEmotions') ? JSON.parse(localStorage.getItem('storageEmotions')) : emotions);
     
     const updateEmotions = (emotionData) => {
-        console.log('Setting emotionData ...')
+        console.log('Updating storageEmotions with emotionData ...');
         console.debug(emotionData);
         localStorage.setItem('storageEmotions', JSON.stringify(emotionData));
         setStorageEmotions(emotionData);
     }
 
+    const resetEmotions = () => {
+        console.log('Resetting storageEmotions ...');
+        localStorage.setItem('storageEmotions', JSON.stringify(emotions));
+        setStorageEmotions(emotions);
+    }
+
     let contextData = {
         storageEmotions: storageEmotions,
         updateEmotions: updateEmotions,
+        resetEmotions: resetEmotions,
     }
 
     return (
