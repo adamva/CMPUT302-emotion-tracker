@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import CircleIcon from '@mui/icons-material/Circle';
 
 import { colorSwatch } from './consts';
 
@@ -16,7 +17,8 @@ const ColorAutoComplete = ({ onChange, emotionValue }) => {
         }}
         getOptionLabel={(option) => option.label}
         renderOption={(props, option) => (
-        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+        <Box component="li" {...props}>
+            <CircleIcon htmlColor={option.colorData[500]}/>
             {option.label}
         </Box>
         )}
