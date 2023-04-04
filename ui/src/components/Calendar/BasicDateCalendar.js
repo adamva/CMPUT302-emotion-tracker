@@ -8,7 +8,7 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
-import { Box, AppBar, Toolbar, Typography } from '@mui/material';
+import { Box, AppBar, Toolbar, Typography, Paper } from '@mui/material';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 
@@ -127,6 +127,7 @@ export default function BasicDateCalendar() {
           </Typography>
           </Toolbar>
       </AppBar>
+    <Paper sx={{ m: 2 }}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
         defaultValue={initialValue}
@@ -144,6 +145,7 @@ export default function BasicDateCalendar() {
         }}
       />
     </LocalizationProvider>
+    </Paper>
     </Box>
   );
 }
