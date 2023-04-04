@@ -8,6 +8,8 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
+import { Box, AppBar, Toolbar, Typography } from '@mui/material';
+
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 
 
@@ -117,6 +119,14 @@ export default function BasicDateCalendar() {
   };
 
   return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Typography variant="h6" component="div">
+              Emotion Calendar
+          </Typography>
+          </Toolbar>
+      </AppBar>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
         defaultValue={initialValue}
@@ -134,5 +144,6 @@ export default function BasicDateCalendar() {
         }}
       />
     </LocalizationProvider>
+    </Box>
   );
 }
