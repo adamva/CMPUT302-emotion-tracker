@@ -34,6 +34,8 @@ export default function SimpleBottomNavigation() {
       newValue = 1;
     } else if (location.pathname === '/graph') {
       newValue = 2;
+    } else if (location.pathname === '/customize') {
+      newValue = 3;
     }
     setValue(newValue);
   }, [location.pathname])
