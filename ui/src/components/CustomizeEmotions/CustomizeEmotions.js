@@ -7,7 +7,7 @@ import { Typography, Toolbar, AppBar } from '@mui/material';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 import ColorAutoComplete from './ColorAutoComplete';
-import { emotions } from '../consts';
+// import { emotions } from '../consts';
 
 const CustomizeEmotions = () => {
     const { updateEmotions, storageEmotions } = useContext(EmotionThemeContext);
@@ -33,13 +33,17 @@ const CustomizeEmotions = () => {
             <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={12}><Typography variant='h5' color='primary'>Emotion Color Swatch</Typography></Grid>
                 <Grid item xs={12}><Typography variant='subtitle2'>Choose your emotion colors</Typography></Grid>
-                {Object.keys(emotions).map((emotion) => (
-                    <React.Fragment key={emotions[emotion].id}>
+                {Object.keys(storageEmotions).map((emotion) => (
+                    <React.Fragment key={storageEmotions[emotion].id}>
                     <Grid item xs={4}>
-                        <Typography>{emotions[emotion].label}</Typography>
+                        <Typography>{storageEmotions[emotion].label}</Typography>
                     </Grid>
                     <Grid item xs={8}>
-                        <ColorAutoComplete onChange={handleUpdate} emotionValue={emotions[emotion].value}/>
+                        <ColorAutoComplete 
+                            onChange={handleUpdate} 
+                            emotionValue={storageEmotions[emotion].value} 
+                            currentColorValue={storageEmotions[emotion].color}
+                        />
                     </Grid>
                     </React.Fragment>
                 ))}

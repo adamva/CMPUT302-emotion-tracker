@@ -6,14 +6,30 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 import { colorSwatch } from './consts';
 
-const ColorAutoComplete = ({ onChange, emotionValue }) => {
+const ColorAutoComplete = ({ onChange, emotionValue, currentColorValue }) => {
+    const [ value, setValue ] = React.useState(() => {
+        let x = '';
+        colorSwatch.forEach(color => {
+            if (color.colorData[500] === currentColorValue.toLowerCase()) { 
+                console.debug('Found emotion to color match ' + emotionValue + ' ' + color.label); 
+                x = color;
+            }
+        });
+        return x;
+    })
+    const [ inputValue, setInputValue ] = React.useState('');
+
   return (
     <Autocomplete
         id={`${emotionValue}-color-select`}
         options={colorSwatch}
         autoHighlight
+        value={value}
         onChange={(event, newValue) => {
-            newValue && onChange(emotionValue, { color: newValue.colorData[500] });
+            if (newValue) {
+                setValue(newValue);
+                onChange(emotionValue, { color: newValue.colorData[500] });
+            };
         }}
         getOptionLabel={(option) => option.label}
         renderOption={(props, option) => (
@@ -22,6 +38,10 @@ const ColorAutoComplete = ({ onChange, emotionValue }) => {
             {option.label}
         </Box>
         )}
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
         renderInput={(params) => (
         <TextField
             {...params}

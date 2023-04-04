@@ -1,14 +1,14 @@
 export const emotions = {
     anger: 
-        { id: 1, label: 'Anger', value: 'anger', icon: '😡', color: '#FF6961' },
+        { id: 1, label: 'Anger', value: 'anger', icon: '😡', color: '#f44336' },
     overwhelmed: 
-        { id: 2, label: 'Overwhelmed', value: 'overwhelmed', icon: '🤯', color: '#30DB5B' },
+        { id: 2, label: 'Overwhelmed', value: 'overwhelmed', icon: '🤯', color: '#4caf50' },
     bored: 
-        { id: 3, label: 'Bored', value: 'bored', icon: '😑', color: '#7D7AFF' },
+        { id: 3, label: 'Bored', value: 'bored', icon: '😑', color: '#9c27b0' },
     anxiety: 
-        { id: 4, label: 'Anxiety', value: 'anxiety', icon: '😨', color: '#FFD426' },
+        { id: 4, label: 'Anxiety', value: 'anxiety', icon: '😨', color: '#ffeb3b' },
     tired: 
-        { id: 5, label: 'Tired', value: 'tired', icon: '😪', color: '#409CFF' },
+        { id: 5, label: 'Tired', value: 'tired', icon: '😪', color: '#2196f3' },
     frustration: 
-        { id: 6, label: 'Frustration', value: 'frustration', icon: '😣', color: '#DA8FFF' },
+        { id: 6, label: 'Frustration', value: 'frustration', icon: '😣', color: '#e91e63' },
 }
