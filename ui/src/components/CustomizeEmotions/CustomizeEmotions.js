@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import { Typography, Toolbar, AppBar } from '@mui/material';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 import ColorAutoComplete from './ColorAutoComplete';
@@ -21,6 +21,14 @@ const CustomizeEmotions = () => {
     }
 
     return (
+        <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+            <Toolbar sx={{ justifyContent: 'space-between' }}>
+            <Typography variant="h6" component="div">
+                Emotion Pallete
+            </Typography>
+            </Toolbar>
+        </AppBar>
         <Paper sx={{ m: 2, p: 2 }}>
             <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={12}><Typography variant='h5'>Emotion Color Swatch</Typography></Grid>
@@ -36,6 +44,7 @@ const CustomizeEmotions = () => {
                 ))}
             </Grid>
         </Paper>
+        </Box>
     )
 }
 
