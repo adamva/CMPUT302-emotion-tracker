@@ -106,7 +106,7 @@ const BasicGraph = ({ currentDate }) => {
       <Grid item xs={12}>
         <Paper sx={{ marginLeft: 2, marginRight: 2 }}>
           <Typography variant='h5' color='primary' sx={{ m: 1 }}>Graph Controls</Typography>
-          <FormControl sx={{ m: 1, width:'60%', maxWidth:'60%' }}>
+          <FormControl sx={{ m: 1, marginBottom: 4, width:'60%', maxWidth:'60%' }}>
             <InputLabel id="active-emotion-select-helper-label">Highlight Emotion</InputLabel>
             <Select
               labelId="active-emotion-select-helper-label"
@@ -121,7 +121,7 @@ const BasicGraph = ({ currentDate }) => {
             </Select>
           </FormControl>
           <MultipleSelectChip activeEmotionList={activeEmotionList} setActiveEmotionList={setActiveEmotionList} />
-          <FormControl sx={{ m: 1, maxWidth:'60%' }}>
+          <FormControl sx={{ m: 1, marginBottom: 4, maxWidth:'60%' }}>
             <InputLabel id="active-location-select-helper-label">Highlight Location</InputLabel>
             <Select
               labelId="active-location-select-helper-label"

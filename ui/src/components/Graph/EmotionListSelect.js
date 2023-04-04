@@ -54,7 +54,7 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width:'60%', maxWidth:'60%' }}>
+      <FormControl sx={{ m: 1, marginBottom: 4, width:'80%', maxWidth:'80%' }}>
         <InputLabel id="demo-multiple-chip-label">Emotions To Show</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
