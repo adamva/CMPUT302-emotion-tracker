@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import * as React from 'react';
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
@@ -8,8 +8,7 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
-import EmotionThemeContext from '../../context/EmotionThemeContext';
-import { getRandomNumber } from '../../utils/Utils';
+import { emotions } from '../consts';
 
 /*
 This code is modified from an example of using dynamic data in MUI's date-calendar component, retrieved on 2023-03-31 from mui.com
@@ -17,59 +16,62 @@ Example code here
 https://mui.com/x/react-date-pickers/date-calendar/#dynamic-data
 */
 
+function getRandomNumber(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+/**
+ * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
+ * ⚠️ No IE11 support
+ */
+function fakeFetch(date, { signal }) {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      const daysInMonth = date.daysInMonth();
+      const daysToHighlight = [1, 2, 3, 4, 5, 6, 7].map(() => getRandomNumber(1, daysInMonth));
+
+      resolve({ daysToHighlight });
+    }, 500);
+
+    signal.onabort = () => {
+      clearTimeout(timeout);
+      reject(new DOMException('aborted', 'AbortError'));
+    };
+  });
+}
+
+const initialValue = dayjs('2022-04-17');
+
+function ServerDay(props) {
+  const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
+
+  const isSelected =
+    !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
+
+  const emotionSelection = getRandomNumber(0, Object.keys(emotions).length - 1);
+  const emotionSelectionValue = Object.keys(emotions)[emotionSelection];
+
+  return (
+    <Badge
+      key={props.day.toString()}
+      overlap="circular"
+      badgeContent={isSelected ? emotions[emotionSelectionValue].icon : undefined}
+    >
+      <PickersDay 
+        {...other} 
+        outsideCurrentMonth={outsideCurrentMonth} 
+        day={day} 
+        sx={isSelected ? { backgroundColor: emotions[emotionSelectionValue].color}: undefined}
+      />
+    </Badge>
+  );
+}
 
 export default function BasicDateCalendar() {
-  const { storageEmotions } = useContext(EmotionThemeContext);
   const navigate = useNavigate();
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
-  const initialValue = dayjs('2022-04-17');
-
-    /**
-   * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
-   * ⚠️ No IE11 support
-   */
-  function fakeFetch(date, { signal }) {
-    return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => {
-        const daysInMonth = date.daysInMonth();
-        const daysToHighlight = [1, 2, 3, 4, 5, 6, 7].map(() => getRandomNumber(1, daysInMonth));
-
-        resolve({ daysToHighlight });
-      }, 500);
-
-      signal.onabort = () => {
-        clearTimeout(timeout);
-        reject(new DOMException('aborted', 'AbortError'));
-      };
-    });
-  }
-
-  function ServerDay(props) {
-    const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
-  
-    const isSelected =
-      !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
-  
-    const emotionSelection = getRandomNumber(0, Object.keys(storageEmotions).length - 1);
-    const emotionSelectionValue = Object.keys(storageEmotions)[emotionSelection];
-  
-    return (
-      <Badge
-        key={props.day.toString()}
-        overlap="circular"
-        badgeContent={isSelected ? storageEmotions[emotionSelectionValue].icon : undefined}
-      >
-        <PickersDay 
-          {...other} 
-          outsideCurrentMonth={outsideCurrentMonth} 
-          day={day} 
-          sx={isSelected ? { backgroundColor: storageEmotions[emotionSelectionValue].color}: undefined}
-        />
-      </Badge>
-    );
-  }
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
