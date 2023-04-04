@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
@@ -8,7 +8,8 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
-import { emotions } from '../consts';
+import EmotionThemeContext from '../../context/EmotionThemeContext';
+
 
 /*
 This code is modified from an example of using dynamic data in MUI's date-calendar component, retrieved on 2023-03-31 from mui.com
@@ -43,25 +44,26 @@ function fakeFetch(date, { signal }) {
 const initialValue = dayjs('2022-04-17');
 
 function ServerDay(props) {
+  const { storageEmotions } = useContext(EmotionThemeContext);
   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
 
   const isSelected =
     !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
 
-  const emotionSelection = getRandomNumber(0, Object.keys(emotions).length - 1);
-  const emotionSelectionValue = Object.keys(emotions)[emotionSelection];
+  const emotionSelection = getRandomNumber(0, Object.keys(storageEmotions).length - 1);
+  const emotionSelectionValue = Object.keys(storageEmotions)[emotionSelection];
 
   return (
     <Badge
       key={props.day.toString()}
       overlap="circular"
-      badgeContent={isSelected ? emotions[emotionSelectionValue].icon : undefined}
+      badgeContent={isSelected ? storageEmotions[emotionSelectionValue].icon : undefined}
     >
       <PickersDay 
         {...other} 
         outsideCurrentMonth={outsideCurrentMonth} 
         day={day} 
-        sx={isSelected ? { backgroundColor: emotions[emotionSelectionValue].color}: undefined}
+        sx={isSelected ? { backgroundColor: storageEmotions[emotionSelectionValue].color}: undefined}
       />
     </Badge>
   );

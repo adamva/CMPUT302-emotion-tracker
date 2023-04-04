@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -9,7 +9,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
-import { emotions } from '../consts';
+import EmotionThemeContext from '../../context/EmotionThemeContext';
 
 /*
 This code is modified from an example of using multi-select in MUI's select component, retrieved on 2023-03-31 from mui.com
@@ -17,29 +17,29 @@ Example code here
 https://mui.com/material-ui/react-select/#chip
 */
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const emotionList = Array.from(Object.keys(emotions), (emotion) => emotions[emotion].label);
-
-function getStyles(name, emotionList, theme) {
-  return {
-    fontWeight:
-      emotionList.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 export default function MultipleSelectChip({ activeEmotionList, setActiveEmotionList }) {
+  const { storageEmotions } = useContext(EmotionThemeContext);
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const emotionList = Array.from(Object.keys(storageEmotions), (emotion) => storageEmotions[emotion].label);
+
+  function getStyles(name, emotionList, theme) {
+    return {
+      fontWeight:
+        emotionList.indexOf(name) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+    };
+  }
   const theme = useTheme();
 
   const handleChange = (event) => {
@@ -66,19 +66,19 @@ export default function MultipleSelectChip({ activeEmotionList, setActiveEmotion
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={emotions[value].icon + ' ' + value} sx={{ backgroundColor: emotions[value].color, color: 'white' }}/>
+                <Chip key={value} label={storageEmotions[value].icon + ' ' + value} sx={{ backgroundColor: storageEmotions[value].color, color: 'white' }}/>
               ))}
             </Box>
           )}
           MenuProps={MenuProps}
         >
-          {Object.keys(emotions).map((emotion) => (
+          {Object.keys(storageEmotions).map((emotion) => (
             <MenuItem
-              key={emotions[emotion].id}
-              value={emotions[emotion].value}
-              style={getStyles(emotions[emotion].label, emotionList, theme)}
+              key={storageEmotions[emotion].id}
+              value={storageEmotions[emotion].value}
+              style={getStyles(storageEmotions[emotion].label, emotionList, theme)}
             >
-              {emotions[emotion].label}
+              {storageEmotions[emotion].label}
             </MenuItem>
           ))}
         </Select>
