@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Area, CartesianGrid, ComposedChart, Line, ReferenceArea, XAxis, YAxis } from 'recharts';
 import { FormControl, FormHelperText, MenuItem, Select, InputLabel, Typography, Paper, Grid } from '@mui/material';
 
-import { emotions } from '../consts';
+import EmotionThemeContext from '../../context/EmotionThemeContext';
 import { fakeGraphData, fakeGraphDataLocation } from './fakeGraphData';
 import MultipleSelectChip from './EmotionListSelect';
 
 const BasicGraph = ({ currentDate }) => {
+  const { storageEmotions } = useContext(EmotionThemeContext);
   const graphWidth = window.innerWidth - 20;
   const graphHeight = window.innerHeight / 2;
   console.debug(`graphWidth: ${graphWidth} graphHeigh: ${graphHeight}`);
@@ -23,7 +24,7 @@ const BasicGraph = ({ currentDate }) => {
   const handleActiveEmotionChange = (e) => {
     let newActiveEmotion = e.target.value;
     // Rearrange the graph to have the active emotion at the beginning of the list such that
-    // the graph will render the non-active emotions ontop
+    // the graph will render the non-active storageEmotions ontop
     let newEmotionList = [...activeEmotionList];
     newEmotionList.splice(activeEmotionList.findIndex((element) => element === newActiveEmotion), 1)
     newEmotionList.unshift(newActiveEmotion);
@@ -33,22 +34,22 @@ const BasicGraph = ({ currentDate }) => {
   }
 
   useEffect(() => {
-    // Choose two random emotions to graph based on any given day choosen
+    // Choose two random storageEmotions to graph based on any given day choosen
     const currentISODate = currentDate.split('T')[0];
-    // let randomNumberArray = getRandomNumberArray(2, Object.keys(emotions).length - 1);
+    // let randomNumberArray = getRandomNumberArray(2, Object.keys(storageEmotions).length - 1);
     let randomNumberArray = [ 
-      currentISODate[currentISODate.length - 1 ] % Object.keys(emotions).length , 
-      currentISODate[currentISODate.length - 2 ] % Object.keys(emotions).length
+      currentISODate[currentISODate.length - 1 ] % Object.keys(storageEmotions).length , 
+      currentISODate[currentISODate.length - 2 ] % Object.keys(storageEmotions).length
     ]
     let newEmotionList = [];
     for (let i = 0; i < randomNumberArray.length; i++) {
-      let randomEmotion = Object.keys(emotions)[randomNumberArray[i]];
+      let randomEmotion = Object.keys(storageEmotions)[randomNumberArray[i]];
       newEmotionList.push(randomEmotion);
     }
     let uniqNewEmotionList = [...new Set(newEmotionList)];
     setActiveEmotionList(uniqNewEmotionList);
     setActiveEmotion(uniqNewEmotionList[0]);
-  }, [currentDate]);
+  }, [currentDate, storageEmotions]);
   
   const renderEmotionGraphData = (emotion, idx) => {
     if (emotion === activeEmotion) {
@@ -56,10 +57,10 @@ const BasicGraph = ({ currentDate }) => {
         <Area 
           key={idx}
           type='monotone' 
-          dataKey={emotions[emotion].value}
+          dataKey={storageEmotions[emotion].value}
           dot={null}
           fill='url(#colorGradient)'
-          stroke={emotions[emotion].color} 
+          stroke={storageEmotions[emotion].color} 
           strokeWidth={2} strokeDasharray="5 5"
         />
       )
@@ -68,9 +69,9 @@ const BasicGraph = ({ currentDate }) => {
         <Line 
           key={idx}
           type='monotone' 
-          dataKey={emotions[emotion].value}
+          dataKey={storageEmotions[emotion].value}
           dot={null} 
-          stroke={emotions[emotion].color} 
+          stroke={storageEmotions[emotion].color} 
           strokeWidth={2}
         />
       )
@@ -88,8 +89,8 @@ const BasicGraph = ({ currentDate }) => {
           >
             <defs>
               <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={emotions[activeEmotion].color} stopOpacity={0.8}/>
-                <stop offset="95%" stopColor={emotions[activeEmotion].color} stopOpacity={0}/>
+                <stop offset="5%" stopColor={storageEmotions[activeEmotion].color} stopOpacity={0.8}/>
+                <stop offset="95%" stopColor={storageEmotions[activeEmotion].color} stopOpacity={0}/>
               </linearGradient>
             </defs>
             {activeEmotionList.map((emotion, idx) => (renderEmotionGraphData(emotion, idx)))}
@@ -115,7 +116,7 @@ const BasicGraph = ({ currentDate }) => {
               onChange={handleActiveEmotionChange}
             >
               {activeEmotionList.map((emotion) => (
-                <MenuItem key={emotions[emotion].id} value={emotions[emotion].value}>{emotions[emotion].label}</MenuItem>
+                <MenuItem key={storageEmotions[emotion].id} value={storageEmotions[emotion].value}>{storageEmotions[emotion].label}</MenuItem>
               ))}
             </Select>
           </FormControl>
