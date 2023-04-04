@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import PaletteIcon from '@mui/icons-material/Palette';
@@ -52,7 +52,7 @@ export default function SimpleBottomNavigation() {
           }}
         >
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/calendar" label="Calendar" icon={<CalendarMonthIcon />} />
-          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<QuestionAnswerIcon />} />
+          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<LibraryBooksIcon />} />
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/graph" label="Graph" icon={<TimelineIcon />} />
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/customize" label="Customize" icon={<PaletteIcon />} />
         </BottomNavigation>
