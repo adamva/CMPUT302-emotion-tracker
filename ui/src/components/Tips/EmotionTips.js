@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import { emotions } from '../consts';
+import EmotionThemeContext from '../../context/EmotionThemeContext';
 import { fakeEmotionInfo } from './fakeEmotionInfo';
 import TipsCard from './TipsCard';
 import { getRandomNumber, getRandomNumberArray } from '../../utils/Utils';
-import { AppBar } from '@mui/material';
+import { AppBar, Toolbar } from '@mui/material';
 
 /*
 This code is modified from an example of using tabs in MUI's tab component, retrieved on 2023-03-31 from mui.com
@@ -44,12 +44,13 @@ TabPanel.propTypes = {
 };
 
 export default function EmotionTips() {
+  const { storageEmotions } = useContext(EmotionThemeContext);
   const [value, setValue] = useState(0);
-  const [activeEmotion, setActiveEmotion ] = useState(emotions['anger']);
+  const [activeEmotion, setActiveEmotion ] = useState(storageEmotions['anger']);
 
   const handleChange = (event, newValue) => {
     console.debug('changing active tip index ' + newValue);
-    let emotion = emotions[Object.keys(emotions)[newValue]];
+    let emotion = storageEmotions[Object.keys(storageEmotions)[newValue]];
     console.debug('changing active tip emotion...');
     console.debug(emotion);
     setActiveEmotion(emotion);
@@ -73,6 +74,7 @@ export default function EmotionTips() {
   return (
     <Box sx={{ bgcolor: 'background.paper' }}>
       <AppBar position='static'>
+        <Toolbar>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -82,11 +84,12 @@ export default function EmotionTips() {
           textColor='inherit'
           indicatorColor='inherit'
         >
-          {Object.keys(emotions).map((emotion) => (
-            <Tab key={emotions[emotion].id} label={emotions[emotion].label}>
+          {Object.keys(storageEmotions).map((emotion) => (
+            <Tab key={storageEmotions[emotion].id} label={storageEmotions[emotion].label}>
             </Tab>
           ))}
         </Tabs>
+        </Toolbar>
       </AppBar>
       <TabPanel value={value} index={value}>
         {renderTipsCards()}
