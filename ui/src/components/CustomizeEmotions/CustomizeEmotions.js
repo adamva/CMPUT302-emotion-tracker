@@ -3,7 +3,8 @@ import React, { useContext } from 'react'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import { Typography, Toolbar, AppBar } from '@mui/material';
+import { Typography, Toolbar, AppBar, Button } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 import ColorAutoComplete from './ColorAutoComplete';
@@ -35,10 +36,12 @@ const CustomizeEmotions = () => {
                 <Grid item xs={12}><Typography variant='subtitle2'>Choose your emotion colors</Typography></Grid>
                 {Object.keys(storageEmotions).map((emotion) => (
                     <React.Fragment key={storageEmotions[emotion].id}>
-                    <Grid item xs={4}>
-                        <Typography>{storageEmotions[emotion].label}</Typography>
+                    <Grid item xs={12}>
+                        <Typography variant='h6' sx={{ display: 'flex', alignItems: 'center'}}>
+                            {storageEmotions[emotion].label} {storageEmotions[emotion].icon} <CircleIcon htmlColor={storageEmotions[emotion].color}/>
+                        </Typography>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={12} sx={{marginBottom: 4}}>
                         <ColorAutoComplete 
                             onChange={handleUpdate} 
                             emotionValue={storageEmotions[emotion].value} 
@@ -47,6 +50,9 @@ const CustomizeEmotions = () => {
                     </Grid>
                     </React.Fragment>
                 ))}
+                <Grid item xs={12}>
+                    <Button variant='contained' color='error'>Reset Pallete To Defaults</Button>
+                </Grid>
             </Grid>
         </Paper>
         </Box>
