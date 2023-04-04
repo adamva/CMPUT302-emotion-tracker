@@ -127,7 +127,7 @@ export default function BasicDateCalendar() {
           </Typography>
           </Toolbar>
       </AppBar>
-    <Paper sx={{ m: 2 }}>
+    <Paper sx={{ m: 2 }} elevation={4}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
         defaultValue={initialValue}
