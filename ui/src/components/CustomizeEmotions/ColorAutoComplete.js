@@ -24,6 +24,7 @@ const ColorAutoComplete = ({ onChange, emotionValue, currentColorValue }) => {
         id={`${emotionValue}-color-select`}
         options={colorSwatch}
         autoHighlight
+        disableClearable
         value={value}
         onChange={(event, newValue) => {
             if (newValue) {
