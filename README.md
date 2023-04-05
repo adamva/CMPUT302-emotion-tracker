@@ -4,11 +4,11 @@ A simple react app that allows users to track & analyze their present or histori
 
 # Contributors
 
-- Adam Ahmed
-- Mahmoud Asadie 
-- Shihao Liu 
-- Jingyi Xu 
-- Jason Sommerville
+- Adam Ahmed - avahmed@ualberta.ca
+- Mahmoud Asadie - asadie@ualberta.ca
+- Shihao Liu - shihao8@ualberta.ca
+- Jingyi Xu - jx15@ualberta.ca
+- Jason Sommerville - jns@ualberta.ca
 
 # Original Repo
 
