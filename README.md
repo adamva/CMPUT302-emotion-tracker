@@ -18,6 +18,14 @@ The original source code for this project can be found in GitHub here: https://g
 
 You can visit the GitHub pages of the original repo https://adamva.github.io/CMPUT302-emotion-tracker/ & you can interact with the app.
 
+Or you can build the source code locally by cloning the repo & running these commands:
+```
+cd ui
+npm install
+npm start
+```
+You should now be able to browse to `http://localhost:3000` & view the app.
+
 The app is inteded to be viewed on a mobile device & the data provided in the app (graphs, tips, etc) is fake data.
 
 You can click the icons in the bottom navigation to browse the different features of the app.
