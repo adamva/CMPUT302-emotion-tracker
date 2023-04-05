@@ -6,6 +6,7 @@ import Calendar from './routes/Calendar';
 import Graph from './routes/Graph';
 import Tips from './routes/Tips';
 import Customize from './routes/Customize';
+import EmotionDefinition from './components/Calendar/EmotionDefinition';
 
 import { EmotionThemeProvider } from './context/EmotionThemeContext';
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/graph" element={<Graph />} />
           <Route path="/customize" element={<Customize />} />
+          <Route path="/emotion-definition/:emotionKey" element={<EmotionDefinition />} />
         </Routes>
         <SimpleBottomNavigation />
       </EmotionThemeProvider>

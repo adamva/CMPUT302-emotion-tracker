@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
@@ -8,9 +8,10 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
-import { Box, AppBar, Toolbar, Typography, Paper } from '@mui/material';
+import { Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
+
 
 
 /*
@@ -43,17 +44,24 @@ function fakeFetch(date, { signal }) {
   });
 }
 
-const initialValue = dayjs('2022-04-17');
+const initialValue = dayjs('2023-04-17');
 
 function ServerDay(props) {
   const { storageEmotions } = useContext(EmotionThemeContext);
-  const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
+  const { highlightedDays = [], day, outsideCurrentMonth, selectingPeriod, selectedDates, ...other } = props;
 
-  const isSelected =
-    !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
+  const isSelected = !selectingPeriod && !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
+  const withinSelectedRange = selectedDates.startDate && selectedDates.endDate && day.isBetween(selectedDates.startDate, selectedDates.endDate, null, '[]');
 
-  const emotionSelection = getRandomNumber(0, Object.keys(storageEmotions).length - 1);
-  const emotionSelectionValue = Object.keys(storageEmotions)[emotionSelection];
+  let emotionSelection;
+  let emotionSelectionValue;
+
+  if (isSelected) {
+    emotionSelection = getRandomNumber(0, Object.keys(storageEmotions).length - 1);
+    emotionSelectionValue = Object.keys(storageEmotions)[emotionSelection];
+  }
+
+  const backgroundColor = withinSelectedRange ? 'lightblue' : (isSelected ? storageEmotions[emotionSelectionValue].color : undefined);
 
   return (
     <Badge
@@ -65,9 +73,41 @@ function ServerDay(props) {
         {...other} 
         outsideCurrentMonth={outsideCurrentMonth} 
         day={day} 
-        sx={isSelected ? { backgroundColor: storageEmotions[emotionSelectionValue].color}: undefined}
+        sx={{ backgroundColor }}
       />
     </Badge>
+  );
+}
+
+function EmotionLegend({ storageEmotions, onEmotionClick }) {
+  const emotionKeys = Object.keys(storageEmotions);
+  const navigate = useNavigate(); // Add this line to use the navigate hook
+
+  const handleButtonClick = (emotionKey) => {
+    onEmotionClick(emotionKey);
+    navigate(`/emotion-definition/${emotionKey}`); // Update the path here
+  };
+
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+      {emotionKeys.map((emotionKey) => (
+        <Button
+          key={emotionKey}
+          variant="outlined"
+          sx={{
+            borderColor: storageEmotions[emotionKey].color,
+            color: "black",
+            borderWidth: 2,
+            m: 1,
+            minWidth: 'auto',
+            width: 'fit-content',
+          }}
+          onClick={() => handleButtonClick(emotionKey)} // Update the onClick handler
+        >
+          {storageEmotions[emotionKey].icon} {emotionKey}
+        </Button>
+      ))}
+    </Box>
   );
 }
 
@@ -76,6 +116,49 @@ export default function BasicDateCalendar() {
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
+
+  const [selectingPeriod, setSelectingPeriod] = useState(false);
+  const [selectedDates, setSelectedDates] = useState({ startDate: null, endDate: null });
+  const { storageEmotions } = useContext(EmotionThemeContext);
+
+  const handleSelect = () => {
+    if (selectingPeriod) {
+      setSelectedDates({ startDate: null, endDate: null });
+    }
+    setSelectingPeriod(!selectingPeriod);
+  };
+
+  console.log('selectedDates', selectedDates);
+  console.log('selectingPeriod', selectingPeriod);
+ 
+  const handleEmotionClick = (emotionKey) => {
+    console.log('Clicked emotion:', emotionKey);
+    // Perform any additional actions on emotion click
+  };
+
+  const handleGenerateSummary = () => {
+    if (selectedDates.startDate && selectedDates.endDate) {
+      console.log('Generating summary for', selectedDates);
+      // Call a function or navigate to another page for generating summary
+    } else {
+      console.log('Please select a time period first.');
+    }
+  };
+
+  const handleDateChange = (date) => {
+    if (selectingPeriod) {
+      if (!selectedDates.startDate) {
+        setSelectedDates({ ...selectedDates, startDate: date });
+      } else if (!selectedDates.endDate || selectedDates.endDate.isSameOrBefore(selectedDates.startDate)) {
+        setSelectedDates({ ...selectedDates, endDate: date });
+      } else {
+        setSelectedDates({ startDate: date, endDate: null });
+      }
+    } else {
+      handleChange(date);
+    }
+  };
+
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
@@ -121,31 +204,55 @@ export default function BasicDateCalendar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-          <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h6" component="div">
-              Emotion Calendar
+            Emotion Calendar
           </Typography>
-          </Toolbar>
+        </Toolbar>
       </AppBar>
-    <Paper sx={{ m: 2 }} elevation={4}>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar
-        defaultValue={initialValue}
-        loading={isLoading}
-        onChange={handleChange}
-        onMonthChange={handleMonthChange}
-        renderLoading={() => <DayCalendarSkeleton />}
-        slots={{
-          day: ServerDay,
-        }}
-        slotProps={{
-          day: {
-            highlightedDays,
-          },
-        }}
-      />
-    </LocalizationProvider>
-    </Paper>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateCalendar
+          defaultValue={initialValue}
+          loading={isLoading}
+          onChange={handleDateChange}
+          onMonthChange={handleMonthChange}
+          renderLoading={() => <DayCalendarSkeleton />}
+          slots={{
+            day: ServerDay,
+          }}
+          slotProps={{
+            day: {
+              highlightedDays,
+              selectedDates,
+              selectingPeriod,
+            },
+          }}
+        />
+  
+  <Typography variant="subtitle1" textAlign="center">
+          {selectedDates.startDate && selectedDates.endDate
+            ? `${selectedDates.startDate.format("YYYY-MMMM-DD")} ---- ${selectedDates.endDate.format("YYYY-MMMM-DD")}`
+            : ""}
+        </Typography>
+        {!selectingPeriod && (
+          <Typography variant="subtitle1" textAlign="center" color={'gray'}>
+            Want to select a time period to <br />see the Custom Summary?
+          </Typography>
+        )}
+
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <Button onClick={handleSelect} variant="contained" color="primary" sx={{ mr: 1 }}>
+            {selectingPeriod ? 'Cancel' : 'Select'}
+          </Button>
+          <Button onClick={handleGenerateSummary} variant="contained" color="secondary">
+            Generate Summary
+          </Button>
+        </Box>
+        <Typography variant="subtitle1" textAlign="center" color={'gray'}>
+          <br/>------------------- Definitions -------------------
+        </Typography>
+        <EmotionLegend storageEmotions={storageEmotions} onEmotionClick={handleEmotionClick} />
+      </LocalizationProvider>
     </Box>
   );
 }
