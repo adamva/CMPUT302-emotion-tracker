@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from 'react';
+import React, { useState, useContext, } from 'react';
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
@@ -8,7 +8,7 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
-import { Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { Paper, Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 
@@ -211,6 +211,7 @@ export default function BasicDateCalendar() {
         </Toolbar>
       </AppBar>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Paper sx={{ m: 2}} elevation={4}>
         <DateCalendar
           defaultValue={initialValue}
           loading={isLoading}
@@ -228,7 +229,7 @@ export default function BasicDateCalendar() {
             },
           }}
         />
-  
+      </Paper>
   <Typography variant="subtitle1" textAlign="center">
           {selectedDates.startDate && selectedDates.endDate
             ? `${selectedDates.startDate.format("YYYY-MMMM-DD")} ---- ${selectedDates.endDate.format("YYYY-MMMM-DD")}`
