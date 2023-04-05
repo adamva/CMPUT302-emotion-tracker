@@ -85,7 +85,7 @@ export default function EmotionTips() {
           TabIndicatorProps={{ sx: { backgroundColor: 'white', color: 'white' }}}
         >
           {Object.keys(storageEmotions).map((emotion) => (
-            <Tab key={storageEmotions[emotion].id} label={storageEmotions[emotion].label}>
+            <Tab key={storageEmotions[emotion].id} label={storageEmotions[emotion].icon + ' ' + storageEmotions[emotion].label}>
             </Tab>
           ))}
         </Tabs>
