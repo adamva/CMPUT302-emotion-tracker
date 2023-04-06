@@ -153,10 +153,9 @@ export default function BasicDateCalendar() {
   const handleGenerateSummary = () => {
     if (selectedDates.startDate && selectedDates.endDate) {
       console.log('Generating summary for', selectedDates);
-      // Call a function or navigate to another page for generating summary
+      navigate('/calendar/summary');
     } else {
-      setNotification({...notification, open: true, message: 'Please select a time period first.', severity: 'error'})
-      console.log('Please select a time period first.');
+      setNotification({...notification, open: true, message: 'Please select a starting & ending date.', severity: 'error'})
     }
   };
 

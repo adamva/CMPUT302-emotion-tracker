@@ -12,6 +12,7 @@ import EmotionDefinition from './components/Calendar/EmotionDefinition';
 import { EmotionThemeProvider } from './context/EmotionThemeContext';
 import Language from './components/Settings/Language';
 import VoiceMode from './components/Settings/VoiceMode';
+import PieChartSummary from './components/Calendar/PieChartSummary';
 
 function App() {
   console.debug('rev: $xwne82$x');
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Tips />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calendar/summary" element={<PieChartSummary />} />
           <Route path="/graph" element={<Graph />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/settings/customize" element={<Customize />} />
