@@ -1,16 +1,20 @@
 import React, { useContext } from 'react'
 
+import { useNavigate } from 'react-router-dom';
+
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Typography, Toolbar, AppBar, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 import ColorAutoComplete from './ColorAutoComplete';
 // import { emotions } from '../consts';
 
 const CustomizeEmotions = () => {
+    const navigate = useNavigate();
     const { updateEmotions, storageEmotions } = useContext(EmotionThemeContext);
 
     const handleUpdate = (emotion, value) => {
@@ -24,7 +28,13 @@ const CustomizeEmotions = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
-            <Toolbar sx={{ justifyContent: 'space-between' }}>
+            <Toolbar>
+            <Button 
+            variant='contained' 
+            onClick={() => navigate('/settings')}
+            startIcon={<NavigateBeforeIcon />}
+            >
+            </Button>
             <Typography variant="h6" component="div">
                 Emotion Pallete
             </Typography>
