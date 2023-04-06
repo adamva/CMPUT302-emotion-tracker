@@ -86,6 +86,11 @@ const PieChartSummary = () => {
             ? `${startDate.format("YYYY-MMMM-DD")} ---- ${endDate.format("YYYY-MMMM-DD")}`
             : ""}
         </Typography>
+        <Paper sx={{ m: 2, p: 2 }}>
+            <Typography textAlign='justify'><b>Frustration</b> and <b>Tired</b> are your outstanding negative emotions.</Typography>
+            <br></br>
+            <Button variant='contained' onClick={() => navigate('/')}>Learn More: Emotion Tips</Button>
+        </Paper>
         </Box>
     );
 }
