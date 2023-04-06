@@ -234,19 +234,31 @@ export default function BasicDateCalendar() {
             ? `${selectedDates.startDate.format("YYYY-MMMM-DD")} ---- ${selectedDates.endDate.format("YYYY-MMMM-DD")}`
             : ""}
         </Typography>
-        {!selectingPeriod && (
+        {!selectingPeriod ? 
           <Typography variant="subtitle1" textAlign="center" color={'gray'}>
             Want to select a time period to <br />see the Custom Summary?
           </Typography>
-        )}
+        :
+          <Typography variant="subtitle1" textAlign="center" color={'gray'}>
+            Please select the start and end date of the summary period.
+          </Typography>
+        }
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          {!selectingPeriod ?
           <Button onClick={handleSelect} variant="contained" color="primary" sx={{ mr: 1 }}>
-            {selectingPeriod ? 'Cancel' : 'Select'}
+            Start Generate
           </Button>
+          :
+          <Button onClick={handleSelect} variant="outlined" color="error" sx={{ mr: 1 }}>
+            Cancel
+          </Button>
+          }
+          { selectingPeriod &&
           <Button onClick={handleGenerateSummary} variant="contained" color="secondary">
             Generate Summary
           </Button>
+          }
         </Box>
         <Typography variant="subtitle1" textAlign="center" color={'gray'}>
           <br/>------------------- Definitions -------------------
