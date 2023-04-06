@@ -8,7 +8,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import PaletteIcon from '@mui/icons-material/Palette';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 /*
 This code is modified from an example of using MUI's bottomnavigation component, retrieved on 2023-03-31 from mui.com
@@ -34,7 +34,7 @@ export default function SimpleBottomNavigation() {
       newValue = 1;
     } else if (location.pathname === '/graph') {
       newValue = 2;
-    } else if (location.pathname === '/customize') {
+    } else if (location.pathname === '/settings') {
       newValue = 3;
     }
     setValue(newValue);
@@ -54,7 +54,7 @@ export default function SimpleBottomNavigation() {
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/calendar" label="Calendar" icon={<CalendarMonthIcon />} />
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/" label="Tips" icon={<LibraryBooksIcon />} />
           <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/graph" label="Graph" icon={<TimelineIcon />} />
-          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/customize" label="Customize" icon={<PaletteIcon />} />
+          <BottomNavigationAction LinkComponent={ReactRouterDomLink} to="/settings" label="Settings" icon={<SettingsIcon />} />
         </BottomNavigation>
       </Paper>
     </Box>
