@@ -16,7 +16,7 @@ The original source code for this project can be found in GitHub here: https://g
 
 # Original Requirement
 
-This app is based on the medium fidelity prototype designed & requirements proposed on 2023-03-30. Medium fidelity prototype version 1 found here: https://www.figma.com/file/VMppaKTVgFpJoraWywzHSo/302-prototypes---medium-fidelity?node-id=0-1
+This app was originally based on the medium fidelity prototype designed & requirements proposed on 2023-03-30. Medium fidelity prototype version 1 found here: https://www.figma.com/file/VMppaKTVgFpJoraWywzHSo/302-prototypes---medium-fidelity?node-id=0-1
 
 However, it does not implement all additional features proposed afterwards. Additional features proposed can be found here in our medium fidelity prototype version 2 here: https://www.figma.com/file/VMppaKTVgFpJoraWywzHSo/302-prototypes---medium-fidelity?node-id=90-744
 
@@ -42,8 +42,16 @@ The app is inteded to be viewed on a mobile device & the data provided in the ap
 
 You can click the icons in the bottom navigation to browse the different features of the app.
 
-- The `calendar` feature allows users to view their emotional history.
-- The `tips` features provides additional information about specific emotions & how to improve themselves.
+- The `calendar` feature allows users to view their emotional history. 
+  - Users can click a specific day to be lead to the `graph` feature for that day.
+  - Another feature include are the `definition` which give users a quick way to learn about negative emotions and their common symptoms.
+  - As well, users can click `start generate` to begin selecting a `start date` and `end date` in the `calendar` & generate a custom `pie chart summary` of thier emotions from the duration choosen.
+- The `tips` features provides additional information about specific emotions & how to improve themselves. User can drag through the `tabs` at the top to view info about specific emotions.
+  - Each tip has a `learn more` button that leads the user to additional web information
+  - As well, there is a `share` button that allows users to either share a specific tip through twitter or email.
 - The `graph` feature displays a user's emotional data over the span of the day & allows users to change the active emotion highligheted, which emotions to graph, and the location users were present when they were feeling certain emotions.
-- The `customize` features allows users to change the colors of the emotion they represent & will update the remainder of the app to reflect the change.
-
+- The `settings` feature allows user to adjust the app's features
+  - The `language` section allows user to change the systems default language
+  - The `voice mode` section enables text-to-speach
+  - The `emotion color swatch` section allows users to change the colors of the emotion they represent
+    - At the bottom there is a `reset pallete to defaults` button that resets the emotions to their respective default colors.
