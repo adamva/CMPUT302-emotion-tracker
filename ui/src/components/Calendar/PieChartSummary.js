@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import dayjs from 'dayjs';
 
 import { PieChart, Pie, Cell } from 'recharts';
 
@@ -18,6 +20,9 @@ const RADIAN = Math.PI / 180;
 
 const PieChartSummary = () => {
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const startDate = dayjs(state.startDate);
+    const endDate = dayjs(state.endDate);
     const { storageEmotions } = useContext(EmotionThemeContext);
 
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -76,6 +81,11 @@ const PieChartSummary = () => {
                 </Pie>
             </PieChart>
         </Paper>
+        <Typography variant="subtitle1" textAlign="center">
+          {state.startDate && state.endDate
+            ? `${startDate.format("YYYY-MMMM-DD")} ---- ${endDate.format("YYYY-MMMM-DD")}`
+            : ""}
+        </Typography>
         </Box>
     );
 }

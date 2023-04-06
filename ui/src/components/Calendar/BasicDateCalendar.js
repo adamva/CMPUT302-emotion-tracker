@@ -153,7 +153,7 @@ export default function BasicDateCalendar() {
   const handleGenerateSummary = () => {
     if (selectedDates.startDate && selectedDates.endDate) {
       console.log('Generating summary for', selectedDates);
-      navigate('/calendar/summary');
+      navigate('/calendar/summary', {state: { startDate: selectedDates.startDate.toISOString(), endDate: selectedDates.endDate.toISOString() }});
     } else {
       setNotification({...notification, open: true, message: 'Please select a starting & ending date.', severity: 'error'})
     }
