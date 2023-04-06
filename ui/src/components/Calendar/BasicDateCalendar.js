@@ -9,6 +9,8 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
 import { Paper, Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 
@@ -120,6 +122,12 @@ export default function BasicDateCalendar() {
   const [selectedDates, setSelectedDates] = useState({ startDate: null, endDate: null });
   const { storageEmotions } = useContext(EmotionThemeContext);
 
+  const [ notification, setNotification ] = useState({
+      open: false,
+      message: 'No message',
+      severity: 'info'
+  });
+
   const handleSelect = () => {
     if (selectingPeriod) {
       setSelectedDates({ startDate: null, endDate: null });
@@ -129,7 +137,14 @@ export default function BasicDateCalendar() {
 
   console.log('selectedDates', selectedDates);
   console.log('selectingPeriod', selectingPeriod);
- 
+  
+  const handleNotificationClose = (event, reason) => {
+    if (reason === 'clickaway') {
+        return;
+    }
+    setNotification({...notification, open: false});
+  };
+
   const handleEmotionClick = (emotionKey) => {
     console.log('Clicked emotion:', emotionKey);
     // Perform any additional actions on emotion click
@@ -140,6 +155,7 @@ export default function BasicDateCalendar() {
       console.log('Generating summary for', selectedDates);
       // Call a function or navigate to another page for generating summary
     } else {
+      setNotification({...notification, open: true, message: 'Please select a time period first.', severity: 'error'})
       console.log('Please select a time period first.');
     }
   };
@@ -209,6 +225,16 @@ export default function BasicDateCalendar() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={6000} 
+        onClose={handleNotificationClose} 
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={handleNotificationClose} severity={notification.severity} sx={{ width: '100%' }}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Paper sx={{ m: 2}} elevation={4}>
         <DateCalendar
