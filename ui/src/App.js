@@ -10,6 +10,8 @@ import Customize from './routes/Customize';
 import EmotionDefinition from './components/Calendar/EmotionDefinition';
 
 import { EmotionThemeProvider } from './context/EmotionThemeContext';
+import Language from './components/Settings/Language';
+import VoiceMode from './components/Settings/VoiceMode';
 
 function App() {
   console.debug('rev: $xwne82$x');
@@ -22,6 +24,8 @@ function App() {
           <Route path="/graph" element={<Graph />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/settings/customize" element={<Customize />} />
+          <Route path="/settings/language" element={<Language />} />
+          <Route path="/settings/voice-mode" element={<VoiceMode />} />
           <Route path="/emotion-definition/:emotionKey" element={<EmotionDefinition />} />
         </Routes>
         <SimpleBottomNavigation />
