@@ -15,6 +15,11 @@ import EmotionThemeContext from '../../context/EmotionThemeContext';
 import { fakeGraphData } from './fakeGraphData';
 
 
+/*
+This code is modified from a documentation guide on rechart's PieChartWithCustomizedLabel by Recharts Group, published 2023, retrieved 2023-04-06 from recharts.org
+Documentation guide found here:
+https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
+*/
 const RADIAN = Math.PI / 180;
 
 const PieChartSummary = () => {
