@@ -89,18 +89,17 @@ function EmotionLegend({ storageEmotions, onEmotionClick }) {
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', mt: 2, p: 2, pr: 8, pl: 8 }}>
       {emotionKeys.map((emotionKey) => (
         <Button
           key={emotionKey}
           variant="outlined"
+          fullWidth
           sx={{
             borderColor: storageEmotions[emotionKey].color,
             color: "black",
             borderWidth: 2,
             m: 1,
-            minWidth: 'auto',
-            width: 'fit-content',
           }}
           onClick={() => handleButtonClick(emotionKey)} // Update the onClick handler
         >
