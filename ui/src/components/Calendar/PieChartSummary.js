@@ -12,7 +12,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 import { fakeGraphData } from './fakeGraphData';
 
-const COLORS = ['#f44336', '#ffeb3b', '#2196f3'];
+const COLORS = ['#f44336', '#2196f3', '#e91e63'];
 
 const RADIAN = Math.PI / 180;
 
@@ -30,9 +30,9 @@ const PieChartSummary = () => {
         if (index === 0) {
             emoji = storageEmotions['anger'].icon;
         } else if (index === 1) {
-            emoji = storageEmotions['anxiety'].icon;
-        }else if (index === 2) {
             emoji = storageEmotions['tired'].icon;
+        }else if (index === 2) {
+            emoji = storageEmotions['frustration'].icon;
         }
         return (
           <text x={x} y={y} fill="black" fontSize={20} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
