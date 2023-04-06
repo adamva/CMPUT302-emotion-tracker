@@ -15,7 +15,7 @@ import ColorAutoComplete from './ColorAutoComplete';
 
 const CustomizeEmotions = () => {
     const navigate = useNavigate();
-    const { updateEmotions, storageEmotions } = useContext(EmotionThemeContext);
+    const { resetEmotions, updateEmotions, storageEmotions } = useContext(EmotionThemeContext);
 
     const handleUpdate = (emotion, value) => {
         console.log(`Changing storageEmotion ${emotion} with data...`);
@@ -61,7 +61,7 @@ const CustomizeEmotions = () => {
                     </React.Fragment>
                 ))}
                 <Grid item xs={12}>
-                    <Button variant='contained' color='error'>Reset Pallete To Defaults</Button>
+                    <Button variant='contained' color='error' onClick={resetEmotions}>Reset Pallete To Defaults</Button>
                 </Grid>
             </Grid>
         </Paper>
