@@ -1,5 +1,24 @@
 import { red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan, teal, green, lightGreen, lime, yellow, amber, orange, deepOrange, brown, grey, blueGrey } from '@mui/material/colors';
 
+const defaultRed = {
+    500: '#F44336'
+}
+const defaultMagenta = {
+    500: '#BF41FE'
+}
+const defaultBlue = {
+    500: '#2196F3'
+}
+const defaultGreen = {
+    500: '#30DB5B'
+}
+const defaultYellow = {
+    500: '#D8AD00'
+}
+const defaultIndigo = {
+    500: '#5D59FF'
+}
+
 // Need to do this because MUI doesn't have an 'import all' for colors
 export const colorSwatch = [
     { id: 0,  value: 'red',  label: 'Red', colorData: red },
@@ -21,4 +40,10 @@ export const colorSwatch = [
     { id: 16, value: 'brown',  label: 'Brown', colorData: brown },
     { id: 17, value: 'grey',  label: 'Grey', colorData: grey },
     { id: 18, value: 'blueGrey',  label: 'Blue Grey', colorData: blueGrey },
+    { id: 19, value: 'defaultRed', label: 'Default Red', colorData: defaultRed},
+    { id: 20, value: 'defaultMagenta', label: 'Default Magenta', colorData: defaultMagenta},
+    { id: 21, value: 'defaultBlue', label: 'Default Blue', colorData: defaultBlue},
+    { id: 22, value: 'defaultGreen', label: 'Default Green', colorData: defaultGreen},
+    { id: 23, value: 'defaultYellow', label: 'Default Yellow', colorData: defaultYellow},
+    { id: 24, value: 'defaultIndigo', label: 'Default Indigo', colorData: defaultIndigo},
 ]

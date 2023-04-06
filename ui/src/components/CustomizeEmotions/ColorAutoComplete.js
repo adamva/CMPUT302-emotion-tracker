@@ -10,7 +10,7 @@ const ColorAutoComplete = ({ onChange, emotionValue, currentColorValue }) => {
     const [ value, setValue ] = React.useState(() => {
         let x = '';
         colorSwatch.forEach(color => {
-            if (color.colorData[500] === currentColorValue.toLowerCase()) { 
+            if (color.colorData[500].toLowerCase() === currentColorValue.toLowerCase()) { 
                 console.debug('Found emotion to color match ' + emotionValue + ' ' + color.label); 
                 x = color;
             }
