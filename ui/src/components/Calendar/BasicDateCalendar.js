@@ -280,7 +280,7 @@ export default function BasicDateCalendar() {
           </Button>
           }
           { selectingPeriod &&
-          <Button onClick={handleGenerateSummary} variant="contained" color="secondary">
+          <Button onClick={handleGenerateSummary} variant="contained" color="primary">
             Generate Summary
           </Button>
           }
