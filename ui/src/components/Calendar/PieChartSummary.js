@@ -14,7 +14,6 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import EmotionThemeContext from '../../context/EmotionThemeContext';
 import { fakeGraphData } from './fakeGraphData';
 
-const COLORS = ['#f44336', '#2196f3', '#e91e63'];
 
 const RADIAN = Math.PI / 180;
 
@@ -44,7 +43,19 @@ const PieChartSummary = () => {
             {`${emoji} ${(percent * 100).toFixed(0)}%`}
           </text>
         );
-      };
+    };
+
+    const getColor = (index) => { 
+        let color;
+        if (index === 0) {
+            color = storageEmotions['anger'].color;
+        } else if (index === 1) {
+            color = storageEmotions['tired'].color;
+        }else if (index === 2) {
+            color = storageEmotions['frustration'].color;
+        }
+        return color;
+    };
     
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -76,7 +87,7 @@ const PieChartSummary = () => {
                     dataKey="value"
                 >
                     {fakeGraphData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell key={`cell-${index}`} fill={getColor(index)} />
                     ))}
                 </Pie>
             </PieChart>
