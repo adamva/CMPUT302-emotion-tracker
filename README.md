@@ -16,7 +16,7 @@ The original source code for this project can be found in GitHub here: https://g
 
 # Original Requirement
 
-This app was originally based on the medium fidelity prototype version 2 here: https://www.figma.com/file/VMppaKTVgFpJoraWywzHSo/302-prototypes---medium-fidelity?node-id=90-744
+This app was originally based on the medium fidelity Final Prototype V2 here: https://www.figma.com/file/VMppaKTVgFpJoraWywzHSo/302-prototypes---medium-fidelity?node-id=90-744
 
 However, it does not implement the proposed changes around the `graph` feature.
 
