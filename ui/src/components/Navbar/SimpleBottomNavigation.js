@@ -28,15 +28,16 @@ export default function SimpleBottomNavigation() {
   useEffect(() => {
     console.debug('got new location ' + location.pathname)
     let newValue = 0;
-    if (location.pathname === '/calendar') {
+    if (location.pathname.startsWith('/calendar') ) {
       newValue = 0;
-    } else if (location.pathname === '/') {
-      newValue = 1;
-    } else if (location.pathname === '/graph') {
-      newValue = 2;
-    } else if (location.pathname === '/settings') {
+    } else if (location.pathname.startsWith('/settings')) {
       newValue = 3;
+    } else if (location.pathname.startsWith('/graph')) {
+      newValue = 2;
+    } else if (location.pathname.startsWith('/')) {
+      newValue = 1;
     }
+    console.debug('setting location ' + newValue);
     setValue(newValue);
   }, [location.pathname])
   
